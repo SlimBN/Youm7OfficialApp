@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical" >
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/News_category_title"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/news_block_title_bg"
+        android:gravity="right|center_vertical"
+        android:text="عنوان القسم"
+        android:textColor="#FFFFFF" />
+
+    <ListView
+        android:id="@+id/news_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp" >
+
+    </ListView>
+
+</LinearLayout>

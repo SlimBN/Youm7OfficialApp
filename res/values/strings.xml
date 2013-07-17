@@ -3,8 +3,31 @@
 
     <string name="app_name">"Youm7 "</string>
     <string name="action_settings">Settings</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">الرئيسية</string>
+    <string name="title_section2">اخبار عاجلة</string>
+    
+    <string-array name="section_names">
+        <item name="home">الرئيسية</item>
+        <item name="urgent">اخبار عاجل</item>
+        <item name="urgent">سياسة</item>
+        <item name="urgent">رياضة</item>
+        <item name="urgent">صحة</item>
+        <item name="urgent">عالمية</item>
+        <item name="urgent">تقارير مصرية</item>
+        <item name="urgent">حوادث</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item> 
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+        <item name="urgent">محافظات</item>
+    </string-array>
+    <string name="drawer_open">opened</string>
+    <string name="drawer_close">closed</string>
 
 </resources>

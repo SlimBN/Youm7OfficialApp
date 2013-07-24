@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_story_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/top_news_bg"
+    android:padding="2dp" >
+
+    <ImageView
+        android:id="@+id/topstoryimgview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/topstoryimgview"
+        android:scaleType="centerCrop"
+        android:src="@drawable/samplens" >
+
+    </ImageView>
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/toptextview"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/topstoryimgview"
+        android:background="@drawable/top_story_title_bg"
+        android:gravity="right|center_vertical"
+        android:text="بهاء الدين شعبان: الإخوان مقضى عليهم بتهم الخيانة والتحريض والترويع"
+        android:textColor="@color/White" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/datetextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/toptextview"
+        android:layout_alignLeft="@+id/toptextview" />
+
+</RelativeLayout>

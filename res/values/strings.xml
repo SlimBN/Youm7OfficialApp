@@ -10,22 +10,35 @@
         <item name="home">الرئيسية</item>
         <item name="urgent">اخبار عاجل</item>
         <item name="urgent">سياسة</item>
-        <item name="urgent">رياضة</item>
-        <item name="urgent">صحة</item>
-        <item name="urgent">عالمية</item>
         <item name="urgent">تقارير مصرية</item>
         <item name="urgent">حوادث</item>
         <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item> 
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">محافظات</item>
+        <item name="urgent">أخبار
+				               	عربية</item>
+        <item name="urgent">اقتصاد</item>
+        <item name="urgent">بورصة
+					وبنوك</item>
+        <item name="urgent">أخبار
+					عالمية</item>
+        <item name="urgent">أخبار
+					الرياضة</item>
+        <item name="urgent">فن
+					وتليفزيون</item>
+        <item name="urgent">ثقافة</item>
+        <item name="urgent">منوعات
+					ومجتمع </item>
+        <item name="urgent">صحة
+					وطب</item> 
+        <item name="urgent">مقالات
+					القراء</item>
+        <item name="urgent">ألبومات
+					اليوم السابع</item>
+					 <item name="urgent">مقالات
+					 </item>
+        <item name="urgent">صحافة
+					محلية</item>
+        <item name="urgent">صحافة
+					عالمية</item>
     </string-array>
     <string name="drawer_open">opened</string>
     <string name="drawer_close">closed</string>

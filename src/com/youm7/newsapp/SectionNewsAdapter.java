@@ -27,8 +27,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class NewsAdapter extends BaseAdapter implements TaskCompletedListener {
+public class SectionNewsAdapter extends BaseAdapter implements TaskCompletedListener {
 
+	private   String SectionURL="http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/65/page/1";
 	private ArrayList<NewsItem> mNewslist;
 	LayoutInflater mAdapterinflater;
 	RelativeLayout mNewsBlock;
@@ -36,28 +37,28 @@ public class NewsAdapter extends BaseAdapter implements TaskCompletedListener {
 	.cacheInMemory(true)
 	.cacheOnDisc(true)
 	.build(); 
-	 static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
+	 NewsLoader sectionloader;
 		ImageLoader mUniversalimageloader;
 	int mViewTypeCount;
-NewsLoader testloader;
-	public NewsAdapter( ArrayList<NewsItem> newslist,Context context, int viewTypeCount,ImageLoader Universalimageloader) {
+
+	public SectionNewsAdapter( ArrayList<NewsItem> newslist,Context context, int viewTypeCount,ImageLoader Universalimageloader,String sectionurl) {
 		
 		
 		super();
-		mViewTypeCount=viewTypeCount;
+		this.SectionURL=sectionurl;
 		mNewslist=newslist;
 		mAdapterinflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mUniversalimageloader=Universalimageloader;
-        mNewslist.add(new NewsItem());
-        testloader=new NewsLoader();
-        testloader.loadSection(topurl, this, 100);
-        
-        		
+        mViewTypeCount=viewTypeCount;
+        sectionloader= new NewsLoader();
+        sectionloader.loadSection(SectionURL, this, 100);
 	}
 @Override
 public int getItemViewType(int position) {
 	// TODO Auto-generated method stub
-	return super.getItemViewType(position);
+	if (position==0)
+		return 0;
+	else return 1;
 	
 }
 @Override
@@ -68,8 +69,10 @@ public int getViewTypeCount() {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		
-		return mNewslist.size();
+		if (mNewslist!=null)
+			return mNewslist.size();
+		else
+			return 0;
 		
 	}
 
@@ -91,16 +94,29 @@ public int getViewTypeCount() {
 		
 		if(convertView==null)
 		{
-		  mNewsBlock= (RelativeLayout) mAdapterinflater.inflate(R.layout.news_block_layout, null);
-		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsTitle);
-		
+			if(getItemViewType(position)==0)
+			{
+		  mNewsBlock= (RelativeLayout) mAdapterinflater.inflate(R.layout.news_block_layout_head, null);
+		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
+		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
 		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
-		return mNewsBlock;
+	 	return mNewsBlock;
+			}
+			else 
+			{
+				 mNewsBlock= (RelativeLayout) mAdapterinflater.inflate(R.layout.news_block_layout, null);
+					((Youm7TextView) (mNewsBlock.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
+					((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
+					mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
+					return mNewsBlock;
+			}
+			
 		
 		}
 	else
 		{
-		((Youm7TextView) (convertView.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsTitle);
+		((Youm7TextView) (convertView.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
+		((Youm7TextView) (convertView.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
 		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (convertView.findViewById(R.id.newsimageview))),dispoptions);
 		return convertView;
 	    }
@@ -108,8 +124,6 @@ public int getViewTypeCount() {
 		
 
 	
-
-
 }
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result) {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sectionapi">http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/{SecID}/page/1</string>
+    <string name="ArticleAPI">http://mobrss.youm7.com/rss/service.svc/SelectForNewsDetails/id/</string>
+    
+</resources>

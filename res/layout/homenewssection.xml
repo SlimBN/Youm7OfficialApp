@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp" >
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/SecTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/section_head_bg"
+        android:gravity="right|center_vertical"
+        android:paddingRight="11dp"
+        android:text="Youm7TextView"
+        android:textColor="@color/White" />
+
+    <ImageView
+        android:id="@+id/secimg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/SecTitleTV" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/mainarticleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/secimg"
+        android:lines="4"
+        android:text="Youm7TextView"
+        android:textColor="@color/Youm7Red"
+        android:textColorHint="@color/Youm7Red" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/secondarticleTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/mainarticleTV"
+        android:layout_marginTop="4dp"
+        android:lines="4"
+        android:text="Youm7TextView"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>

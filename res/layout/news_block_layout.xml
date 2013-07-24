@@ -1,34 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsblockcontainer"
+    android:layout_width="fill_parent"
+    android:layout_height="150dp"
+    android:background="@color/news_block_bg"
+    android:padding="5dp" >
 
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools"
-     android:layout_width="fill_parent"
-     android:layout_height="100dp"
-     android:layout_gravity="fill_horizontal"
-     android:background="@drawable/news_block_bg"
-     android:padding="2dp" >
+    <ImageView
+        android:id="@+id/newsimageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/top_news_bg"
+        android:scaleType="centerCrop"
+       />
 
-        <com.youm7.newsapp.Youm7TextView
-            android:id="@+id/newstitletextview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/newsimageview"
-            android:ellipsize="marquee"
-            android:gravity="center_vertical|right"
-            android:maxHeight="100dp"
-            android:paddingRight="4dp"
-            android:text="بهاء الدين شعبان: الإخوان مقضى عليهم بتهم الخيانة والتحريض والترويع"
-            android:textStyle="bold" />
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/news_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/newsimageview"
+        android:gravity="top|right"
+        android:padding="5dp"
+        android:text="news_title_textview"
+        android:textColor="@color/Youm7Red"
+        android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/newsimageview"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="false"
-            android:scaleType="centerCrop" />
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/news_abstract_textview"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/newsimageview"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical|right"
+        android:height="50dp"
+        android:lines="3"
+        android:maxLines="3"
+        android:padding="5dp"
+        android:text="Youm7TextView"
+        android:textColor="@android:color/black" />
 
-    </RelativeLayout>
-
-    
+</RelativeLayout>

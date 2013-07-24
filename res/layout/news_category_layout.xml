@@ -9,19 +9,19 @@
         android:id="@+id/News_category_title"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/news_block_title_bg"
+        android:layout_margin="4dp"
+        android:background="@drawable/section_head_bg"
         android:gravity="right|center_vertical"
+        android:paddingRight="11dp"
         android:text="عنوان القسم"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/White" />
 
     <ListView
         android:id="@+id/news_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp" >
+        android:divider="@drawable/news_listview_divider"
+        >
 
     </ListView>
 

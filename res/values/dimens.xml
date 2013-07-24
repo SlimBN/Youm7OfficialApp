@@ -4,4 +4,16 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 <dimen name="news_block_margintop">20dp</dimen>
+<string-array name="home_sectionID">
+    <item >65</item>
+    <item >319</item>
+    <item >97</item>
+    <item >203</item>
+</string-array>
+<string-array name="home_sectionNames">
+    <item >اخبار عاجلة</item>
+    <item >سياسة</item>
+    <item >تقارير مصرية</item>
+    <item >حولدث</item>
+</string-array>
 </resources>

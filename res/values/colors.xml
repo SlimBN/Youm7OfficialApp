@@ -2,5 +2,8 @@
 <resources>
     <color name="Youm7Red">#ea2d34</color>
     <color name="White">#ffffff</color>
+    <color name="news_block_bg">#F0F0F0</color>
+    <color name="top_news_bg">#5D5D5D</color>
     
+   
 </resources>

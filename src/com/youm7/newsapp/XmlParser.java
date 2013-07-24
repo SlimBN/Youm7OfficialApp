@@ -15,6 +15,7 @@ public class XmlParser {
     URL SecApiLink;
     int eventtype;
     ArrayList<NewsItem> newslist;
+   int mElementsCount;
     private static XmlPullParserFactory mParserGenerator;
 	public XmlParser(String URL) throws XmlPullParserException, MalformedURLException {
 		super();
@@ -24,8 +25,9 @@ public class XmlParser {
 		newsparser.setFeature(org.xmlpull.v1.XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
 	    newslist=new ArrayList<NewsItem>();
 	}
-	public ArrayList<NewsItem> getnews() throws XmlPullParserException, IOException
+	public ArrayList<NewsItem> getnews (int elementscount) throws XmlPullParserException, IOException
 	{
+		mElementsCount=elementscount;
 		init_Connection();
 		Parse();
 		return newslist;
@@ -39,11 +41,11 @@ public class XmlParser {
 	{
 		eventtype=newsparser.getEventType();
 	    int position=0;
-		while (eventtype != XmlPullParser.END_DOCUMENT){
+		while (eventtype != XmlPullParser.END_DOCUMENT&&position<mElementsCount){
 			switch(eventtype){
 			
 			case XmlPullParser.START_TAG:
-				String tagName=newsparser.getName();
+			String tagName=newsparser.getName();
 			if(tagName.equalsIgnoreCase("item"))
 			{
 				newslist.add(new NewsItem());
@@ -67,6 +69,11 @@ public class XmlParser {
 			else if(tagName.equalsIgnoreCase("abstract"))
 			{
 				newslist.get(position).NewsAbstract=newsparser.nextText();
+				position++;
+			}
+			else if(tagName.equalsIgnoreCase("body"))
+			{
+				newslist.get(position).NewsContent=newsparser.nextText();
 				position++;
 			}
 			break;

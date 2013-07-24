@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:fillViewport="true" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/redbars_bg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+       
+
+        <com.youm7.newsapp.Youm7TextView
+            android:id="@+id/youmTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            
+            android:layout_alignParentTop="true"
+            android:background="@color/White"
+            android:text="Youm7TextView"
+            android:textColor="@color/Youm7Red"
+            android:textSize="20sp" />
+ <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/youmTextView1"
+            android:background="@color/White"
+            android:scaleType="centerCrop" />
+
+        <com.youm7.newsapp.Youm7TextView
+            android:id="@+id/youmTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/imageView1"
+            android:background="@color/White"
+            android:text="Youm7TextView"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</ScrollView>

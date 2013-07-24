@@ -6,32 +6,43 @@ import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import com.youm7.newsapp.Home.DummySectionFragment;
+
 
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 
-public  class NewsLoader {
-	DummySectionFragment frag;
+public  class NewsLoader   {
+	
 	private static boolean initialized=false;
 	private static ArrayList<downloadtask> currentTasks=new ArrayList<NewsLoader.downloadtask>();
-	public  void  loadSection(String url, DummySectionFragment calingFrag)  
+	private TaskCompletedListener TaskListener;
+	public  void  loadSection(String url,TaskCompletedListener Listener, int newscount)  
 	{
-		currentTasks.add(new downloadtask());
+		TaskListener=Listener;
+		currentTasks.add(new downloadtask(newscount));
 		currentTasks.get(currentTasks.size()-1).execute(url);
-		frag=calingFrag;
+		
 	}
-	
+	public interface TaskCompletedListener {
+		public void OnTaskCompleted(ArrayList<NewsItem> result);
+		
+	}
 	
 private class downloadtask extends AsyncTask<String, Void, ArrayList<NewsItem>>
 {
+    private int mElementcount;
 
+	public downloadtask(int mElementcount) {
+	super();
+	this.mElementcount = mElementcount;
+}
 
 	@Override
 	protected ArrayList<NewsItem> doInBackground(String... urls) {
 		// TODO Auto-generated method stub
 	try {
-		return	new XmlParser(urls[0]).getnews();
+		IOException e;
+		return	new XmlParser(urls[0]).getnews(mElementcount);
 	} catch (MalformedURLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -62,7 +73,8 @@ private class downloadtask extends AsyncTask<String, Void, ArrayList<NewsItem>>
 	protected void onPostExecute(ArrayList<NewsItem> result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		frag.OndownloadFinished(result);
+		TaskListener.OnTaskCompleted(result);
+		
 		
 	}
 

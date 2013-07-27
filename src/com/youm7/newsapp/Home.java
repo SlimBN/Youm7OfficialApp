@@ -55,6 +55,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 		getActionBar().setLogo(getResources().getDrawable(R.drawable.ic_logo));
 		getActionBar().setDisplayUseLogoEnabled(true);
 		getActionBar().setDisplayShowHomeEnabled(true);
+		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		
 		// Create the adapter that will return a fragment for each of the three
 		mDrawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,7 +65,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    mloadImage.init(mLoadconfig);
 	    mRightMenu.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_text_view,getResources().getStringArray(R.array.section_names)));
 	    MainfragmentManager= getSupportFragmentManager();
-	   mRightMenu.setOnItemClickListener(new DrawerItemClickListener());       
+	    mRightMenu.setOnItemClickListener(new DrawerItemClickListener());       
 	       
 	      
 	       
@@ -76,13 +77,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
        
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.home, menu);
-		return true;
-		
-	}
+	
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -98,10 +93,11 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    	SectionFragment frag= new SectionFragment();
 	   Bundle 	sectionDetails= new Bundle();
 	   sectionDetails.putString("SecTitle", getResources().getStringArray(R.array.section_names)[position]);
-	   sectionDetails.putString("SecID",Integer.toString( getResources().getIntArray(R.array.sectionIDs)[position])); 	
+	   sectionDetails.putString("SecID",Integer.toString( getResources().getIntArray(R.array.sectionIDs)[position+1])); 	
 	  frag.setArguments(sectionDetails);
 	   trans=MainfragmentManager.beginTransaction();
-	       trans.replace(R.id.drawer_layout, frag).addToBackStack(null);
+	   trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+	       trans.replace(R.id.FragHolder, frag).addToBackStack(null);
 	       trans.commit();
 	       mDrawerLayout.closeDrawer(mRightMenu);
 	    
@@ -122,7 +118,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 			boolean AddToBS) {
 		// TODO Auto-generated method stub
 		
-		
-		getSupportFragmentManager().beginTransaction().replace(R.id.drawer_layout, frag).addToBackStack(null).commit();
+		getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, frag).addToBackStack(null).commit();
 		
 	}}

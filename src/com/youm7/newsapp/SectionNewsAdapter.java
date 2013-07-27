@@ -99,6 +99,7 @@ public int getViewTypeCount() {
 		  mNewsBlock= (RelativeLayout) mAdapterinflater.inflate(R.layout.news_block_layout_head, null);
 		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
 		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
+		
 		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
 	 	return mNewsBlock;
 			}
@@ -126,7 +127,7 @@ public int getViewTypeCount() {
 	
 }
 	@Override
-	public void OnTaskCompleted(ArrayList<NewsItem> result) {
+	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		mNewslist= result;
 		notifyDataSetChanged();
 		

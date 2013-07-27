@@ -60,6 +60,7 @@ public int getItemViewType(int position) {
 	return super.getItemViewType(position);
 	
 }
+
 @Override
 public int getViewTypeCount() {
 	// TODO Auto-generated method stub
@@ -112,7 +113,7 @@ public int getViewTypeCount() {
 
 }
 	@Override
-	public void OnTaskCompleted(ArrayList<NewsItem> result) {
+	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		mNewslist= result;
 		notifyDataSetChanged();
 		

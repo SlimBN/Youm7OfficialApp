@@ -77,10 +77,15 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 
 
 	@Override
-	public void OnTaskCompleted(ArrayList<NewsItem> result) {
+	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
 		Article=result.get(0);
-	     ((TextView)	getView().findViewById(R.id.youmTextView2)).setText(Article.NewsContent);
+	     try {
+			((TextView)	getView().findViewById(R.id.youmTextView2)).setText(Article.NewsContent);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

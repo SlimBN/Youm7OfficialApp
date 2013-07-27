@@ -3,8 +3,11 @@ package com.youm7.newsapp;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import org.xmlpull.v1.XmlPullParserException;
+
+
 
 
 
@@ -14,8 +17,9 @@ import android.support.v4.app.Fragment;
 public  class NewsLoader   {
 	
 	private static boolean initialized=false;
-	private static ArrayList<downloadtask> currentTasks=new ArrayList<NewsLoader.downloadtask>();
+	private  ArrayList<downloadtask> currentTasks=new ArrayList<NewsLoader.downloadtask>();
 	private TaskCompletedListener TaskListener;
+	private int mTaskid;
 	public  void  loadSection(String url,TaskCompletedListener Listener, int newscount)  
 	{
 		TaskListener=Listener;
@@ -23,8 +27,16 @@ public  class NewsLoader   {
 		currentTasks.get(currentTasks.size()-1).execute(url);
 		
 	}
+	public  void  loadSection(String url,TaskCompletedListener Listener, int newscount,int TaskID)  
+	{
+		mTaskid=TaskID;
+		TaskListener=Listener;
+		currentTasks.add(new downloadtask(newscount));
+		currentTasks.get(currentTasks.size()-1).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+		
+	}
 	public interface TaskCompletedListener {
-		public void OnTaskCompleted(ArrayList<NewsItem> result);
+		public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID);
 		
 	}
 	
@@ -73,7 +85,10 @@ private class downloadtask extends AsyncTask<String, Void, ArrayList<NewsItem>>
 	protected void onPostExecute(ArrayList<NewsItem> result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		TaskListener.OnTaskCompleted(result);
+		
+		
+			TaskListener.OnTaskCompleted(result, mTaskid);
+		
 		
 		
 	}

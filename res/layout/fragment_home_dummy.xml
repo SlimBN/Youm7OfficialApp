@@ -4,33 +4,44 @@
     android:id="@+id/HomePagelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android1:fillViewport="true" >
+    android1:fillViewport="true"
+    android1:overScrollMode="always"
+     >
 
     <LinearLayout
         android:id="@+id/maincontainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android1:background="@drawable/redbars_bg"
+        android1:overScrollMode="always"
         android1:paddingLeft="10dp"
         android1:paddingRight="10dp"
-        android1:paddingTop="10dp" >
+        android1:paddingTop="10dp"
+        android1:scrollbars="none" >
 
         <com.youm7.newsapp.SmartViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/TopStoryPager"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android1:id="@+id/TopStoryPager"
+            android1:layout_width="match_parent"
+            android1:layout_height="220dp"
+            android1:layout_marginBottom="5dp"
+            android:fadingEdgeLength="20dp"
+            android:overScrollMode="always"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="10dp" >
+            android:paddingTop="10dp" 
+          >
         </com.youm7.newsapp.SmartViewPager>
 
         <LinearLayout
             android:id="@+id/sections_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android1:background="#fffffe"
+            android1:baselineAligned="true"
+            android1:paddingTop="10dp" >
 
             <LinearLayout
                 android:id="@+id/leftcolumnView"

@@ -12,7 +12,7 @@
         android:layout_margin="4dp"
         android:background="@drawable/section_head_bg"
         android:gravity="right|center_vertical"
-        android:paddingRight="11dp"
+        android:paddingRight="14dp"
         android:text="عنوان القسم"
         android:textColor="@color/White" />
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/logoImage"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/news_block_bg"
+    android:paddingBottom="4dp"
+    android:paddingRight="8dp"
+    android:paddingTop="4dp" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_logo" />
+
+</RelativeLayout>

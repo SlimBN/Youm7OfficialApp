@@ -37,8 +37,8 @@ public class SectionFragment extends Fragment implements OnItemClickListener{
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.news_category_layout,
 				container, false);
-		
-	
+		mNewsScroll= mNewsScroll=(ListView) rootView.findViewById(R.id.news_listview);
+	   ((TextView) rootView.findViewById(R.id.News_category_title)).setText(mSecTitle);
 		return rootView;
 	}
 
@@ -62,7 +62,7 @@ public class SectionFragment extends Fragment implements OnItemClickListener{
 	@Override
 	public void onStart() {
 		// TODO Auto-generated method stub
-		mNewsScroll=(ListView) getView().findViewById(R.id.news_listview);
+		
 		mNewsScroll.setAdapter(newsAdapter);
 	    mNewsScroll.setOnItemClickListener(this);
 		super.onStart();

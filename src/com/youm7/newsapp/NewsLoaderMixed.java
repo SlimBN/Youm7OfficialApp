@@ -3,6 +3,8 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.util.SparseArrayCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,11 +15,14 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.youm7.newsapp.NewsLoader.TaskCompletedListener;
+import com.youm7.newsapp.SectionFragment.OnArticleSelectedListener;
 
 
 public class NewsLoaderMixed implements  TaskCompletedListener,OnClickListener{
 
-	private ArrayList<NewsItem> mixednews;
+	OnHomeArticleSelected HomeFrag;
+	
+	private volatile  SparseArrayCompat<NewsItem>  mixednews;
 	NewsLoader mLoader;
 	LinearLayout RightColumn;
 	LinearLayout LeftColumn;
@@ -29,12 +34,13 @@ public class NewsLoaderMixed implements  TaskCompletedListener,OnClickListener{
 	private LayoutInflater inflater;
 	private String[] mSectionNames;
 	String[] mSectionIds;
-	
+	volatile int j=0;
+	OnArticleSelectedListener Articleclicklistener;
 	public NewsLoaderMixed(
-			View holder, Context context ,ImageLoader loader) {
+			View holder, Context context ,ImageLoader loader,Fragment Frag) {
 		super();
 		mImageloader=loader;
-		mixednews=new ArrayList<NewsItem>();
+		HomeFrag=(OnHomeArticleSelected) Frag;
 		this.holder = (LinearLayout) holder;
 		RightColumn=(LinearLayout) holder.findViewById(R.id.rightcolumnView);
 		LeftColumn=(LinearLayout) holder.findViewById(R.id.leftcolumnView);
@@ -43,23 +49,28 @@ public class NewsLoaderMixed implements  TaskCompletedListener,OnClickListener{
 		mSectionIds=context.getResources().getStringArray(R.array.home_sectionID);
 		mSectionNames= context.getResources().getStringArray(R.array.home_sectionNames);
 		NumberOfSections=mSectionIds.length;
+		mixednews=new SparseArrayCompat<NewsItem>();
 		inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
-		mLoader.loadSection(ConstructURL(mSectionIds[i]), this, 2);
-		i++;
+		for(i=0;i<NumberOfSections;i++)
+		{
+		mLoader=new NewsLoader();
+		mLoader.loadSection(ConstructURL(mSectionIds[i]), this, 2,i);
+		}
 	}
+	
 	@Override
-	public void OnTaskCompleted(ArrayList<NewsItem> result) {
-	mixednews.add(result.get(0));
-	mixednews.add(result.get(1));
-	if(i<NumberOfSections)
+	public  synchronized void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
+	
+	mixednews.put(taskID*2,result.get(0));
+	mixednews.put(taskID*2+1,result.get(1));
+	j++;
+	if(j==NumberOfSections)
 	{
-		mLoader= new NewsLoader();
-		mLoader.loadSection(ConstructURL(mSectionIds[i]), this, 2);
-		i++;
-	}
-	else
 		FillLayout();
+		
+	}
+	
+		
 		
 	}
 	private void FillLayout() {
@@ -70,8 +81,12 @@ public class NewsLoaderMixed implements  TaskCompletedListener,OnClickListener{
 		{
 			RelativeLayout temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setText(mixednews.get(i).NewsTitle);
+			((TextView)(temp.findViewById(R.id.mainarticleTV))).setOnClickListener(this);
+			((TextView)(temp.findViewById(R.id.mainarticleTV))).setTag(mixednews.get(i));
 			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/2]);
 			((TextView)(temp.findViewById(R.id.secondarticleTV))).setText(mixednews.get(i+1).NewsTitle);
+			((TextView)(temp.findViewById(R.id.secondarticleTV))).setTag(mixednews.get(i+1));
+			((TextView)(temp.findViewById(R.id.secondarticleTV))).setOnClickListener(this);;
 		    mImageloader.displayImage(mixednews.get(i).NewsImgLink,(ImageView) temp.findViewById(R.id.secimg));
 			RightColumn.addView(temp);
 		}
@@ -80,19 +95,20 @@ public class NewsLoaderMixed implements  TaskCompletedListener,OnClickListener{
 		{
 			RelativeLayout temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setText(mixednews.get(i).NewsTitle);
+			((TextView)(temp.findViewById(R.id.mainarticleTV))).setOnClickListener(this);
+			((TextView)(temp.findViewById(R.id.mainarticleTV))).setTag(mixednews.get(i));
 			((TextView)(temp.findViewById(R.id.secondarticleTV))).setText(mixednews.get(i+1).NewsTitle);
+			((TextView)(temp.findViewById(R.id.secondarticleTV))).setTag(mixednews.get(i+1));
+			((TextView)(temp.findViewById(R.id.secondarticleTV))).setOnClickListener(this);;
 			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/2]);
+		
 		    mImageloader.displayImage(mixednews.get(i).NewsImgLink,(ImageView) temp.findViewById(R.id.secimg));
 		    LeftColumn.addView(temp);
 			
 		}
 		
 	}
-	public NewsLoaderMixed(NewsLoader mLoader, View holder, Context context) {
-		super();
-		this.mLoader = mLoader;
-		this.holder = (LinearLayout) holder;
-	}
+	
 
 private String ConstructURL(String SecID)
 {
@@ -101,10 +117,14 @@ private String ConstructURL(String SecID)
 	
 	
 }
+
+
+
 @Override
 public void onClick(View v) {
-	// TODO Auto-generated method stub
+	
+	HomeFrag.HoMeSelected((NewsItem) v.getTag());
 	
 }
-	
+
 }

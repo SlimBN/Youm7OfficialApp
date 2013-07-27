@@ -8,10 +8,14 @@
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/myactiobar</item>
+        <item name="android:background">@color/White</item>
+        
     </style>
 <style name="myactiobar" parent="@android:style/Widget.Holo.Light.ActionBar">
     
   <item name="android:background">@drawable/news_block_bg</item>
   <item name="android:textColor">@color/Youm7Red</item>
+  <item name="android:displayOptions">showHome|useLogo|showCustom</item>
+    <item name="android:customNavigationLayout">@layout/customactionbar</item>
 </style>
 </resources>

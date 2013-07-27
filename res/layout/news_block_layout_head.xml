@@ -11,30 +11,33 @@
 
      <ImageView
          android:id="@+id/newsimageview"
-         android:layout_width="150dp"
+         android:layout_width="170dp"
          android:layout_height="150dp"
+         android:paddingBottom="15dp"
+         android:paddingLeft="15dp"
          android:scaleType="centerCrop" />
 
      <com.youm7.newsapp.Youm7TextView
          android:id="@+id/news_title_textview"
-         android:layout_width="200dp"
-         android:layout_height="fill_parent"
-         android:layout_above="@+id/news_abstract_textview"
+         android:layout_width="match_parent"
+         android:layout_height="110dp"
          android:layout_alignParentRight="true"
-         android:layout_alignParentTop="true"
-         android:layout_toRightOf="@+id/newsimageview"
+         android:layout_toRightOf="@id/newsimageview"
+         android:ellipsize="marquee"
+         android:gravity="right|center_vertical"
          android:text="Youm7TextView"
-         android:textSize="13sp" />
+         android:textColor="@color/Youm7Red" />
 
      <com.youm7.newsapp.Youm7TextView
          android:id="@+id/news_abstract_textview"
-         android:layout_width="200dp"
-         android:layout_height="40dp"
-         android:layout_alignLeft="@+id/sectionhead3TV"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
          android:layout_alignParentBottom="true"
+        
          android:layout_alignParentRight="true"
-         android:text="Youm7TextView"
-         android:textSize="11sp" />
+         android:layout_below="@id/news_title_textview"
+         android:layout_toRightOf="@+id/newsimageview"
+         android:text="Youm7TextView" />
 
     </RelativeLayout>
 

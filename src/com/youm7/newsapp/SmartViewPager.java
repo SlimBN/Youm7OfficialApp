@@ -45,6 +45,7 @@ public class SmartViewPager extends ViewPager {
         // Methods
         //
         // -----------------------------------------------------------------------
+        
         @Override
         public boolean onTouchEvent(MotionEvent event) {
                 // decide if horizontal axis is locked already or we need to check the scrolling direction
@@ -56,6 +57,7 @@ public class SmartViewPager extends ViewPager {
                         mIsLockOnHorizontalAxis = false;
 
                 getParent().requestDisallowInterceptTouchEvent(mIsLockOnHorizontalAxis);
+                
                 return super.onTouchEvent(event);
         }
 
@@ -76,7 +78,7 @@ public class SmartViewPager extends ViewPager {
                  */
                 @Override
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                        return Math.abs(distanceX) > Math.abs(distanceY);
+                        return Math.abs(distanceX) > (Math.abs(distanceY));
                 }
 
         }

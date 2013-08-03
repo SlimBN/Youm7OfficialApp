@@ -58,13 +58,18 @@ public class XmlParser {
 			{
 				newslist.get(position).NewsId=newsparser.nextText();
 			}
-			else if(tagName.equalsIgnoreCase("pubdate"))
+			else if(tagName.equalsIgnoreCase("date"))
 			{
 				newslist.get(position).NewsDateString=newsparser.nextText();
 			}
 			else if(tagName.equalsIgnoreCase("mainimage"))
 			{
 				newslist.get(position).NewsImgLink=newsparser.nextText();
+			}
+			else if(tagName.equalsIgnoreCase("link"))
+			{
+				newslist.get(position).NewsLink=newsparser.nextText();
+			
 			}
 			else if(tagName.equalsIgnoreCase("abstract"))
 			{

@@ -5,24 +5,24 @@
     android:layout_height="match_parent" >
 
 <FrameLayout
-    android1:id="@+id/FragHolder"
-    android1:layout_width="match_parent"
-    android1:layout_height="match_parent" >
+    android:id="@+id/FragHolder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <fragment
-        android1:id="@+id/home_fragment"
-        android1:name="com.youm7.newsapp.HomeFragment"
-        android1:layout_width="match_parent"
-        android1:layout_height="wrap_content" />
+   <ImageView   android:layout_height="match_parent"
+               android:layout_width="match_parent"
+       			 android:src="@drawable/loadingscreen"
+       			 
+        />
 </FrameLayout>
     <ListView
-        android1:id="@+id/drawer_listview"
-        android1:layout_width="240dp"
-        android1:layout_height="match_parent"
+        android:id="@+id/drawer_listview"
+        android:layout_width="210dp"
+        android:layout_height="match_parent"
         android:layout_gravity="end"
-        android1:background="@drawable/redbars_bg"
-        android1:paddingLeft="5dp"
-        android1:paddingRight="5dp" >
+        android1:background="@android:color/white"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
 
     </ListView>
 

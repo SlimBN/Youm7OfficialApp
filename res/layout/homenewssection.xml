@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/section_head_bg"
         android:gravity="right|center_vertical"
         android:paddingRight="11dp"

@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
-    android:orientation="vertical" >
+    android:background="@drawable/redbars_bg"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/News_category_title"
@@ -16,13 +18,12 @@
         android:text="عنوان القسم"
         android:textColor="@color/White" />
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/news_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:divider="@drawable/news_listview_divider"
-        >
+         style="">
 
-    </ListView>
-
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
 </LinearLayout>

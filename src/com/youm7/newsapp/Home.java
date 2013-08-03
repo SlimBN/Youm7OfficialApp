@@ -1,6 +1,10 @@
 package com.youm7.newsapp;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -12,14 +16,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.youm7.newsapp.SectionFragment.OnArticleSelectedListener;
+
 
 public class Home extends FragmentActivity implements OnArticleSelectedListener {
 
@@ -40,6 +47,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	DisplayImageOptions dispoptions;
 	FragmentManager MainfragmentManager;
 	FragmentTransaction trans;
+	HomeFragment Startingfrag;
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -48,16 +56,13 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+		 getActionBar().hide();
 		setContentView(R.layout.activity_home);
-        getActionBar();
-		getActionBar().setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
-		getActionBar().setDisplayShowTitleEnabled(false);
-		getActionBar().setLogo(getResources().getDrawable(R.drawable.ic_logo));
-		getActionBar().setDisplayUseLogoEnabled(true);
-		getActionBar().setDisplayShowHomeEnabled(true);
-		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		
-		// Create the adapter that will return a fragment for each of the three
+      
+	
+	    
 		mDrawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
 		mRightMenu= (ListView) findViewById(R.id.drawer_listview);
 	    mLoadconfig= new ImageLoaderConfiguration.Builder(this).build();
@@ -66,7 +71,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    mRightMenu.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_text_view,getResources().getStringArray(R.array.section_names)));
 	    MainfragmentManager= getSupportFragmentManager();
 	    mRightMenu.setOnItemClickListener(new DrawerItemClickListener());       
-	       
+	     
 	      
 	       
 	}
@@ -74,10 +79,27 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
+        if (isOnline())
        
+        Startingfrag=new HomeFragment(this.getApplicationContext(),this);
+        else 
+        {
+        	Toast.makeText(this, "تأكد من الاتصال بالانترنت",Toast.LENGTH_LONG);
+        	this.finish();
+        }
+       
+        
     }
 
-	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		
+		super.onStart();
+		
+		
+		
+	}
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -90,11 +112,12 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    @Override
 	    public void onItemClick(AdapterView parent, View view, int position, long id) {
 	   
-	    	SectionFragment frag= new SectionFragment();
+	    SectionFragment frag= new SectionFragment();
+	   
 	   Bundle 	sectionDetails= new Bundle();
 	   sectionDetails.putString("SecTitle", getResources().getStringArray(R.array.section_names)[position]);
-	   sectionDetails.putString("SecID",Integer.toString( getResources().getIntArray(R.array.sectionIDs)[position+1])); 	
-	  frag.setArguments(sectionDetails);
+	   sectionDetails.putString("SecID",Integer.toString( getResources().getIntArray(R.array.sectionIDs)[position-1])); 	
+	   frag.setArguments(sectionDetails);
 	   trans=MainfragmentManager.beginTransaction();
 	   trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 	       trans.replace(R.id.FragHolder, frag).addToBackStack(null);
@@ -106,11 +129,6 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 
 	/** Swaps fragments in the main content view */
 	
-	@Override
-	public void setTitle(CharSequence title) {
-	    
-	  
-	}
 	
 
 	@Override
@@ -118,7 +136,44 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 			boolean AddToBS) {
 		// TODO Auto-generated method stub
 		
-		getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, frag).addToBackStack(null).commit();
-		
-	}}
+		FragmentTransaction trans=getSupportFragmentManager().beginTransaction();
+		trans.replace(R.id.FragHolder, frag).addToBackStack("artsource");
+		trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		trans.commit();
+	}
+	@Override
+	public void OnHomeUpdateFinished() {
+		// TODO Auto-generated method stu
+	
+	   
+		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, Startingfrag).commit();
+		getActionBar().show();
+		getActionBar().getCustomView().findViewById(R.id.ImageView2).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(mDrawerLayout.isDrawerOpen(mRightMenu))
+					mDrawerLayout.closeDrawer(mRightMenu);
+				else 
+					mDrawerLayout.openDrawer(mRightMenu);
+			}
+		});
+		getActionBar().getCustomView().findViewById(R.id.fullsite).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(Intent.ACTION_VIEW, 
+					       Uri.parse("http://www.youm7.com/"));
+					startActivity(i);
+				
+			}
+		});
+	}
+	public boolean isOnline()
+	{
+		ConnectivityManager cm= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		return cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnected();
+	}
+	}

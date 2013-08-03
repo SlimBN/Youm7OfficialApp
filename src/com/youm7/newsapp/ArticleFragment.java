@@ -7,6 +7,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.youm7.newsapp.NewsLoader.TaskCompletedListener;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -36,7 +39,13 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.article_layout,container, false);
+	View temp= inflater.inflate(R.layout.article_layout,container, false);
+	
+    mloadImage.displayImage(Article.NewsImgLink, (ImageView) temp.findViewById(R.id.article_body));
+	((TextView) temp.findViewById(R.id.youmTextView1)).setText(Article.NewsTitle);
+	loadArticleBody.loadSection(articleapi+Article.NewsId, this, 1);
+	 getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.VISIBLE);
+	return temp;
 	}
 
 
@@ -48,10 +57,8 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		 super.onStart();
-		 loadArticleBody.loadSection(articleapi+Article.NewsId, this, 1);
-	    mloadImage.displayImage(Article.NewsImgLink, (ImageView) getView().findViewById(R.id.imageView1));
-		((TextView) getView().findViewById(R.id.youmTextView1)).setText(Article.NewsTitle);
 		 
+		
 	}
 
 	@Override
@@ -79,14 +86,27 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
-		Article=result.get(0);
+		
 	     try {
+	    	 Article=result.get(0);
 			((TextView)	getView().findViewById(R.id.youmTextView2)).setText(Article.NewsContent);
+			((TextView) getView().findViewById(R.id.youm7TextView3)).setText(Article.NewsDateString);
+			getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent i=new Intent(android.content.Intent.ACTION_SEND);
+					i.setType("text/plain");
+					i.putExtra(android.content.Intent.EXTRA_TEXT, Article.NewsLink);
+					startActivity(i);
+				}
+			});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	    
+	   	
 	}
 
 }

@@ -36,7 +36,7 @@ public class NewsAdapter extends BaseAdapter implements TaskCompletedListener {
 	.cacheInMemory(true)
 	.cacheOnDisc(true)
 	.build(); 
-	 static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
+	 static final String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 		ImageLoader mUniversalimageloader;
 	int mViewTypeCount;
 NewsLoader testloader;

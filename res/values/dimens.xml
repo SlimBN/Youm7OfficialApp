@@ -5,15 +5,25 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 <dimen name="news_block_margintop">20dp</dimen>
 <string-array name="home_sectionID">
-    <item >65</item>
-    <item >319</item>
-    <item >97</item>
-    <item >203</item>
+        <item >65</item>
+        <item >319</item>
+        <item >97</item>
+        <item >203</item>
+        <item >296</item>
+        <item >88</item>
+        <item >24</item>
+        <item >297</item>
 </string-array>
 <string-array name="home_sectionNames">
-    <item >اخبار عاجلة</item>
-    <item >سياسة</item>
-    <item >تقارير مصرية</item>
-    <item >حولدث</item>
+    <item name="urgent">أخبار عاجلة</item>
+        <item name="syasa">سياسة</item>
+        <item name="takarir">تقارير مصرية</item>
+        <item name="hawadeth">حوادث</item>
+        <item name="mohafzat">محافظات</item>
+        <item name="a5bar">أخبار
+				               	عربية</item>
+        <item name="econ">اقتصاد</item>
+        <item name="stocks">بورصة
+					وبنوك</item>
 </string-array>
 </resources>

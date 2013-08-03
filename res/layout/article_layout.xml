@@ -3,7 +3,9 @@
     android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:background="@drawable/redbars_bg"
+    android:fillViewport="true"
+    android:scrollbars="none" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,31 +18,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="2dp"
             android:background="@color/White"
+            android:gravity="right|center_vertical"
             android:padding="3dp"
             android:text="Youm7TextView"
             android:textColor="@color/Youm7Red"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
- <ImageView
-     android:id="@+id/imageView1"
-     android:layout_width="match_parent"
-     android:layout_height="200dp"
-     android:layout_below="@id/youmTextView1"
-     android:layout_marginBottom="2dp"
-     android:scaleType="centerCrop" />
+         <com.youm7.newsapp.Youm7TextView
+             android:id="@+id/youm7TextView3"
+             android:layout_width="fill_parent"
+             android:layout_height="15dp"
+             android:layout_below="@id/youmTextView1"
+             android:layout_marginBottom="2dp"
+             android:drawablePadding="3dp"
+             android:drawableRight="@drawable/sec_date"
+             android:gravity="right|center_vertical"
+             android:paddingRight="3dp"
+             android:textSize="11sp" />
 
+<ImageView
+            android:id="@+id/article_body"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/youm7TextView3"
+            android:scaleType="centerCrop" />
         <com.youm7.newsapp.Youm7TextView
             android:id="@+id/youmTextView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/imageView1"
+            android:layout_below="@id/article_body"
             android:background="@color/White"
             android:padding="8dp"
-            android:textSize="17sp" />
+            android:textSize="17sp" 
+           />
+
+       
+
+        
 
     </RelativeLayout>
 

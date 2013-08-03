@@ -7,39 +7,40 @@
     
     <string-array name="section_names">
         <item name="home">الرئيسية</item>
-        <item name="urgent">اخبار عاجل</item>
-        <item name="urgent">سياسة</item>
-        <item name="urgent">تقارير مصرية</item>
-        <item name="urgent">حوادث</item>
-        <item name="urgent">محافظات</item>
-        <item name="urgent">أخبار
+        <item name="urgent">اخبار عاجلة</item>
+        <item name="syasa">سياسة</item>
+        <item name="takarir">تقارير مصرية</item>
+        <item name="hawadeth">حوادث</item>
+        <item name="mohafzat">محافظات</item>
+        <item name="a5bar">أخبار
 				               	عربية</item>
-        <item name="urgent">اقتصاد</item>
-        <item name="urgent">بورصة
+        <item name="econ">اقتصاد</item>
+        <item name="stocks">بورصة
 					وبنوك</item>
-        <item name="urgent">أخبار
+        <item name="world">أخبار
 					عالمية</item>
-        <item name="urgent">أخبار
+        <item name="sports">أخبار
 					الرياضة</item>
-        <item name="urgent">فن
+        <item name="art">فن
 					وتليفزيون</item>
-        <item name="urgent">ثقافة</item>
-        <item name="urgent">منوعات
+        <item name="edu">ثقافة</item>
+        <item name="var">منوعات
 					ومجتمع </item>
-        <item name="urgent">صحة
+        <item name="health">صحة
 					وطب</item> 
-        <item name="urgent">مقالات
+        <item name="essay">مقالات
 					القراء</item>
-        <item name="urgent">ألبومات
+        <item name="photos">ألبومات
 					اليوم السابع</item>
 					 <item name="urgent">مقالات
 					 </item>
-        <item name="urgent">صحافة
+        <item name="local">صحافة
 					محلية</item>
-        <item name="urgent">صحافة
+        <item name="wornews">صخق
 					عالمية</item>
     </string-array>
     <string name="drawer_open">opened</string>
     <string name="drawer_close">closed</string>
+    <string name="footer_text">حقوق النشر محفوظة اليوم السابع  \u00A9</string>
 
 </resources>

@@ -2,6 +2,9 @@ package com.youm7.newsapp;
 
 import java.util.ArrayList;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -20,9 +23,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class SectionFragment extends Fragment implements OnItemClickListener{
+public class SectionFragment extends Fragment implements OnItemClickListener,OnHomeArticleSelected{
 	
-	ListView mNewsScroll;
+	PullToRefreshListView mNewsScroll;
 	ArrayList<NewsItem> sectionNewsList;
 	ImageLoader mImageloader;
 	String mSecTitle;
@@ -37,7 +40,18 @@ public class SectionFragment extends Fragment implements OnItemClickListener{
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.news_category_layout,
 				container, false);
-		mNewsScroll= mNewsScroll=(ListView) rootView.findViewById(R.id.news_listview);
+		mNewsScroll=(PullToRefreshListView) rootView.findViewById(R.id.news_listview);
+		mNewsScroll.setOnRefreshListener(new OnRefreshListener<ListView>() {
+
+				@Override
+				public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+					newsAdapter.UpdateSection();
+					
+				}
+			});
+		mNewsScroll.setAdapter(newsAdapter);
+	    mNewsScroll.setOnItemClickListener(this);
+	  
 	   ((TextView) rootView.findViewById(R.id.News_category_title)).setText(mSecTitle);
 		return rootView;
 	}
@@ -54,17 +68,17 @@ public class SectionFragment extends Fragment implements OnItemClickListener{
 	        .cacheOnDisc(true)
 	        .build();      
 	        mLoadconfig= new ImageLoaderConfiguration.Builder(getActivity().getApplicationContext()).build();
-		     mloadImage=ImageLoader.getInstance();
-		        mloadImage.init(mLoadconfig);
-		       newsAdapter=new SectionNewsAdapter(sectionNewsList, getActivity().getApplicationContext(), 2, mloadImage,ConstructURL(mSecID));
+		    mloadImage=ImageLoader.getInstance();
+		    mloadImage.init(mLoadconfig);
+		    newsAdapter=new SectionNewsAdapter(sectionNewsList, getActivity().getApplicationContext(), 2, mloadImage,ConstructURL(mSecID), this);
+		     
 	}
 
 	@Override
 	public void onStart() {
 		// TODO Auto-generated method stub
 		
-		mNewsScroll.setAdapter(newsAdapter);
-	    mNewsScroll.setOnItemClickListener(this);
+		
 		super.onStart();
 	}
 
@@ -82,9 +96,7 @@ public class SectionFragment extends Fragment implements OnItemClickListener{
 		CallActivity.OnArticleSelected(frag,this,true);
 		
 	}
-public interface OnArticleSelectedListener{
-	public void OnArticleSelected(Fragment frag, Fragment LeavingFrsg, boolean AddToBS);
-}
+
 @Override
 public void onAttach(Activity activity) {
 	// TODO Auto-generated method stub
@@ -97,5 +109,17 @@ private String ConstructURL(String SecID)
 	return template.replace("{SecID}", SecID);
 	
 	
+}
+
+@Override
+public void HomeSelected(NewsItem item) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void RefreshFinished() {
+	// TODO Auto-generated method stub
+	mNewsScroll.onRefreshComplete();
 }
 }

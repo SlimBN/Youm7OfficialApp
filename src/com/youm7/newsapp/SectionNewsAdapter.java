@@ -40,8 +40,8 @@ public class SectionNewsAdapter extends BaseAdapter implements TaskCompletedList
 	 NewsLoader sectionloader;
 		ImageLoader mUniversalimageloader;
 	int mViewTypeCount;
-
-	public SectionNewsAdapter( ArrayList<NewsItem> newslist,Context context, int viewTypeCount,ImageLoader Universalimageloader,String sectionurl) {
+OnHomeArticleSelected RefreshFinishedlistener;
+	public SectionNewsAdapter( ArrayList<NewsItem> newslist,Context context, int viewTypeCount,ImageLoader Universalimageloader,String sectionurl, OnHomeArticleSelected refreshlistener) {
 		
 		
 		super();
@@ -50,7 +50,11 @@ public class SectionNewsAdapter extends BaseAdapter implements TaskCompletedList
 		mAdapterinflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mUniversalimageloader=Universalimageloader;
         mViewTypeCount=viewTypeCount;
-        sectionloader= new NewsLoader();
+        RefreshFinishedlistener=refreshlistener;
+        UpdateSection();
+	}
+	public void UpdateSection(){
+		sectionloader= new NewsLoader();
         sectionloader.loadSection(SectionURL, this, 100);
 	}
 @Override
@@ -130,6 +134,7 @@ public int getViewTypeCount() {
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		mNewslist= result;
 		notifyDataSetChanged();
+		RefreshFinishedlistener.RefreshFinished();
 		
 	}
 }

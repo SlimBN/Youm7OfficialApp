@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.viewpagerindicator.IconPagerAdapter;
 import com.youm7.newsapp.NewsLoader.TaskCompletedListener;
 
 import android.content.Context;
@@ -23,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class myPagerAdapter extends PagerAdapter implements TaskCompletedListener,OnClickListener,OnTouchListener,OnLongClickListener,IconPagerAdapter {
+public class mogazPagerAdapter extends PagerAdapter implements TaskCompletedListener,OnClickListener,OnTouchListener,OnLongClickListener {
 int mViewCount;
 LayoutInflater mViewPagerInflater;
 NewsLoader mloadTopStory;
@@ -35,9 +34,10 @@ static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
 .cacheOnDisc(true)
 .build(); 
 OnHomeArticleSelected TopStoryListener;
-static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
+static String topurl="http://41.128.134.138/youm7_mobilesite/mogazservice.php";
+LayoutInflater mogazInflater;
 	ImageLoader mUniversalimageloader;
-	public myPagerAdapter(int ViewCount,Context context,ImageLoader universalimageloader,OnHomeArticleSelected topstory) {
+	public mogazPagerAdapter(int ViewCount,Context context,ImageLoader universalimageloader,OnHomeArticleSelected topstory) {
 		// TODO Auto-generated constructor stub
 		mViewCount=ViewCount;
 		mViewPagerInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,6 +46,7 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 		
 		mUniversalimageloader=universalimageloader;
 		TopStoryListener=topstory;
+		mogazInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		UpdateTopStory();
 	}
 
@@ -57,7 +58,7 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 	public int getCount() {
 		// TODO Auto-generated method stub
 		if(mTopNews!=null)
-		return mTopNews.size();
+		return 200;
 		return 0;
 	}
     
@@ -76,17 +77,17 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 		public Object instantiateItem(ViewGroup container, int position) {
 			// TODO Auto-generated method stub
 		
-		RelativeLayout temp =(RelativeLayout) mViewPagerInflater.inflate(R.layout.top_story_layout,null);
-		temp.setTag(position);
-		 ((ViewPager) container).addView(temp);
-	     ((TextView)  temp.findViewById(R.id.toptextview)).setText(mTopNews.get(position).NewsTitle);
-		 mUniversalimageloader.displayImage(mTopNews.get(position).NewsImgLink, (ImageView) temp.findViewById(R.id.topstoryimgview), dispoptions);  
-		 temp.findViewById(R.id.topstoryimgview).setTag(mTopNews.get(position));
-	     temp.setOnClickListener(this);
-	     temp.setOnTouchListener(this);
-	     temp.setOnLongClickListener(this);
-	     temp.setTag(mTopNews.get(position));
+		ImageView temp =(ImageView) mogazInflater.inflate(R.layout.mogaz_image, null);
+	
+		  
 	    
+		 mUniversalimageloader.displayImage(mTopNews.get(position%mTopNews.size()).NewsImgLink,  temp, dispoptions);  
+		 temp.setTag(mTopNews.get(position%mTopNews.size()));
+	     temp.setOnClickListener(this);
+	   //  temp.setOnTouchListener(this);
+	  //   temp.setOnLongClickListener(this);
+	  //   temp.setTag(mTopNews.get(position));*/
+		 container.addView(temp);
 		 return temp;
 	     
 	     
@@ -99,7 +100,7 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 	}
    public NewsItem getItem(int position)
    {
-	   return mTopNews.get(position);
+	   return mTopNews.get(position%mTopNews.size());
    }
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
@@ -130,16 +131,12 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 
 	@Override
 	public boolean onLongClick(View v) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		v.setAlpha(0.7f);
 		return false;
-	}
-
-	@Override
-	public int getIconResId(int index) {
-		
-	return	R.drawable.indicator_icons;
-	
 	}
 
 

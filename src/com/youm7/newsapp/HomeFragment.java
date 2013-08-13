@@ -3,11 +3,13 @@ package com.youm7.newsapp;
 import java.util.ArrayList;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
 
 
 
@@ -32,13 +34,13 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.viewpagerindicator.IconPageIndicator;
-public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnClickListener{
+public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnClickListener, OnRefreshListener<ViewPager>{
 
 	PullToRefreshScrollView pullToRefreshView;
 	RelativeLayout mNewsSectionsHolder;
 	ImageLoader mloadImage;
 	DisplayImageOptions dispoptions;
-	SmartViewPager mViewPager;
+	ViewPager mViewPager;
 	ImageLoaderConfiguration mLoadconfig ;
     ArrayList<NewsItem> collectedsections;
     myPagerAdapter TopstoryAdapter;
@@ -53,6 +55,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
     mogazPagerAdapter mogazadapter;
     IconPageIndicator topindicator;
     Youm7TextView mogazTitle;
+    PullToRefreshViewPager mRefViewpager;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -61,19 +64,28 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 	       
 		
 		FragmentView =  inflater.inflate(R.layout.fragment_home_dummy,null);
-		mViewPager= (SmartViewPager) FragmentView.findViewById(R.id.TopStoryPager);
-		mViewPager.setAdapter(TopstoryAdapter);	
+		mRefViewpager=(PullToRefreshViewPager) FragmentView.findViewById(R.id.TopStoryPager);
+		mViewPager= mRefViewpager.getRefreshableView();
+		mViewPager.setAdapter(TopstoryAdapter);
+		mRefViewpager.setOnRefreshListener(this);
+		mRefViewpager.setMode(Mode.BOTH);
+		mRefViewpager.getLoadingLayoutProxy().setPullLabel(null);
+		mRefViewpager.getLoadingLayoutProxy().setRefreshingLabel(null);
+		mRefViewpager.getLoadingLayoutProxy().setReleaseLabel(null);
 		topindicator=(IconPageIndicator) FragmentView.findViewById(R.id.idicator);	
 		pullToRefreshView = (PullToRefreshScrollView) FragmentView;	
+		pullToRefreshView.getLoadingLayoutProxy().setRefreshingLabel(getString(R.string.Refreshing_label));
+		pullToRefreshView.getLoadingLayoutProxy().setPullLabel(getString(R.string.pull_label));
+		pullToRefreshView.getLoadingLayoutProxy().setReleaseLabel(getString(R.string.release_label));
 		mogazcontainer = (PagerContainer) FragmentView.findViewById(R.id.mogaz_container);
 		mogazTitle= (Youm7TextView) FragmentView.findViewById(R.id.mogazTitle);
-		 mogazpager = (SmartViewPager) mogazcontainer.getViewPager();
+		mogazpager = (SmartViewPager) mogazcontainer.getViewPager();
 	    mogazpager.setClipChildren(false);
 		mogazpager.setAdapter(mogazadapter);
 		topindicator.setViewPager(mViewPager);
 		topindicator.notifyDataSetChanged();
-	        mogazpager.setOffscreenPageLimit(6);
-	       mogazpager.setPageMargin(15);
+	    mogazpager.setOffscreenPageLimit(4);
+	    mogazpager.setPageMargin(15);
 	       
 	       mixednewsloader.setAdapter(FragmentView.findViewById(R.id.sections_holder));
 	       mogazpager.setOnPageChangeListener(new OnPageChangeListener() {
@@ -128,7 +140,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
         mLoadconfig= new ImageLoaderConfiguration.Builder(context).build();
 	    mloadImage=ImageLoader.getInstance();
 	    mloadImage.init(mLoadconfig);
-	    TopstoryAdapter=new myPagerAdapter(100,context,mloadImage,this);
+	    TopstoryAdapter=new myPagerAdapter(4,context,mloadImage,this);
 		
 		mixednewsloader=new MixedNewsAdapter(context, mloadImage, this);
 		
@@ -229,6 +241,13 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 			RefreshCounter=3;
 		}
 			
+	}
+
+
+	@Override
+	public void onRefresh(PullToRefreshBase<ViewPager> refreshView) {
+		// TODO Auto-generated method stub
+		refreshView.onRefreshComplete();
 	}
 	
 	

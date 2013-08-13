@@ -1,10 +1,13 @@
 <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+                                 xmlns:tools="http://schemas.android.com/tools"
+   xmlns:custom="http://schemas.android.com/apk/res/com.youm7.newsapp"
    
     android:id="@+id/HomePagelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true" 
+    custom:ptrHeaderBackground="@drawable/redbars_bg"
+    custom:ptrHeaderTextColor="@color/Youm7Red"
    
     >
 
@@ -20,19 +23,22 @@
         android:paddingTop="10dp"
         android:scrollbars="none" >
 
-        <com.youm7.newsapp.SmartViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager
+           
             android:id="@+id/TopStoryPager"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginBottom="5dp"
-            
             android:overScrollMode="always"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="10dp" 
+            android:paddingTop="10dp"
+            custom:ptrMode="both" 
+            custom:ptrDrawable="@color/White"
+            custom:ptrHeaderBackground="@color/White"
+
           >
-        </com.youm7.newsapp.SmartViewPager>
+        </com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager>
         <com.viewpagerindicator.IconPageIndicator 
             android:id="@+id/idicator"
              android:layout_height="wrap_content"
@@ -108,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textSize="10sp"
-            android:background="@drawable/top_story_title_bg"
+            android:background="@color/Dark_Grey"
             android:textColor="@android:color/white"
             android:text="@string/footer_text"
             android:gravity="center_horizontal"

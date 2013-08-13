@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
     android:padding="5dp" >
 
     <com.youm7.newsapp.Youm7TextView
@@ -27,6 +26,7 @@
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/mainarticleTV"
+        style="@style/homesectionstyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -40,10 +40,48 @@
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/secondarticleTV"
+        style="@style/homesectionstyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/mainarticleTV"
+        android:layout_marginBottom="2dp"
+        android:lines="4"
+        android:textColor="@android:color/black" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/thirdarticleTV"
+        style="@style/homesectionstyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/secondarticleTV"
+        android:layout_marginBottom="2dp"
+        android:background="#F0F0F0"
+        android:lines="4"
+        android:padding="2dp"
+        android:textColor="@android:color/black" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/fourtharticleTV"
+        style="@style/homesectionstyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/thirdarticleTV"
+        android:layout_marginBottom="2dp"
+        android:background="#F0F0F0"
+        android:lines="4"
+        android:padding="2dp"
+        android:textColor="@android:color/black" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/fiftharticleTV"
+        style="@style/homesectionstyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/fourtharticleTV"
         android:layout_marginBottom="2dp"
         android:background="#F0F0F0"
         android:lines="4"

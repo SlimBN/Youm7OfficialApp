@@ -9,7 +9,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
+
 
 
 
@@ -34,7 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.viewpagerindicator.IconPageIndicator;
-public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnClickListener, OnRefreshListener<ViewPager>{
+public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnClickListener, OnRefreshListener<SmartViewPager>{
 
 	PullToRefreshScrollView pullToRefreshView;
 	RelativeLayout mNewsSectionsHolder;
@@ -199,7 +199,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		details.putString("newsid", ArticleToOpen.NewsId);
 		frag.setArguments(details);
 		
-		CallActivity.OnArticleSelected(frag,this,true);
+		CallActivity.OnHomeArticleSelected(frag,this,true);
 	}
 
 
@@ -214,7 +214,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		details.putString("newsid", ArticleToOpen.NewsId);
 		frag.setArguments(details);
 		Log.d("home clicked ", "true");
-		CallActivity.OnArticleSelected(frag,this,true);
+		CallActivity.OnHomeArticleSelected(frag,this,true);
 	}
 	
 	@Override
@@ -244,8 +244,10 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 	}
 
 
+	
+
 	@Override
-	public void onRefresh(PullToRefreshBase<ViewPager> refreshView) {
+	public void onRefresh(PullToRefreshBase<SmartViewPager> refreshView) {
 		// TODO Auto-generated method stub
 		refreshView.onRefreshComplete();
 	}

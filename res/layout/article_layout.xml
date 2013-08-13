@@ -39,25 +39,28 @@
              android:textSize="11sp" />
 
 <ImageView
-            android:id="@+id/article_body"
+            android:id="@+id/logoimg"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@id/youm7TextView3"
             android:scaleType="centerCrop" />
+
         <com.youm7.newsapp.Youm7TextView
             android:id="@+id/youmTextView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/article_body"
+            android:layout_below="@id/logoimg"
             android:background="@color/White"
             android:padding="8dp"
-            android:textSize="17sp" 
+            android:textSize="17sp" />
+
+       <include layout="@layout/footer_view" 
+            android:id="@+id/footer_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/youmTextView2"
            />
-
-       
-
-        
 
     </RelativeLayout>
 

@@ -41,7 +41,7 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 		// TODO Auto-generated method stub
 	View temp= inflater.inflate(R.layout.article_layout,container, false);
 	
-    mloadImage.displayImage(Article.NewsImgLink, (ImageView) temp.findViewById(R.id.article_body));
+    mloadImage.displayImage(Article.NewsImgLink, (ImageView) temp.findViewById(R.id.logoimg));
 	((TextView) temp.findViewById(R.id.youmTextView1)).setText(Article.NewsTitle);
 	loadArticleBody.loadSection(articleapi+Article.NewsId, this, 1);
 	 getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.VISIBLE);

@@ -51,7 +51,7 @@ OnHomeArticleSelected RefreshFinishedlistener;
         mUniversalimageloader=Universalimageloader;
         mViewTypeCount=viewTypeCount;
         RefreshFinishedlistener=refreshlistener;
-        UpdateSection();
+        
 	}
 	public void UpdateSection(){
 		sectionloader= new NewsLoader();

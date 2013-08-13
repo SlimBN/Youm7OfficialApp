@@ -26,7 +26,7 @@
         android:padding="5dp"
         android:text="news_title_textview"
         android:textColor="@color/Youm7Red"
-        android:textSize="18sp" />
+        android:textSize="18dp" />
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/news_abstract_textview"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">"Youm7 "</string>
+    <string name="app_name">"اليوم السابع"</string>
     <string name="action_settings">Settings</string>
    
     
     <string-array name="section_names">
-        <item name="home">الرئيسية</item>
+       
         <item name="urgent">اخبار عاجلة</item>
         <item name="syasa">سياسة</item>
         <item name="takarir">تقارير مصرية</item>

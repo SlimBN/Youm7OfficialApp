@@ -26,7 +26,9 @@
         android:ellipsize="marquee"
         android:gravity="right|center_vertical"
         android:paddingRight="8dp"
-        android:textColor="@color/White" />
+        android:textColor="@color/White" 
+        android:textStyle="bold"
+        android:lines="2"/>
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/datetextview"

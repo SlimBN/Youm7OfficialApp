@@ -36,7 +36,8 @@
         android:lines="4"
         android:padding="2dp"
         android:textColor="@color/Youm7Red"
-        android:textColorHint="@color/Youm7Red" />
+        android:textColorHint="@color/Youm7Red"
+        android:textStyle="bold" />
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/secondarticleTV"

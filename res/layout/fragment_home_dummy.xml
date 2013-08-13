@@ -23,13 +23,11 @@
         android:paddingTop="10dp"
         android:scrollbars="none" >
 
-        <com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager
-           
+        <com.youm7.newsapp.PullToRefreshViewPager
             android:id="@+id/TopStoryPager"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginBottom="5dp"
-            android:overScrollMode="always"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="10dp"
@@ -38,7 +36,7 @@
             custom:ptrHeaderBackground="@color/White"
 
           >
-        </com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager>
+        </com.youm7.newsapp.PullToRefreshViewPager>
         <com.viewpagerindicator.IconPageIndicator 
             android:id="@+id/idicator"
              android:layout_height="wrap_content"
@@ -70,18 +68,18 @@
         <com.youm7.newsapp.Youm7TextView 
             android:id="@+id/mogazTitle"
             android:layout_width="match_parent"
-               android:layout_height="wrap_content" 
+            android:layout_height="wrap_content" 
             android:textColor="@android:color/white"
             android:background="#5D5d5D"
-           android:gravity="center"
-             android:ellipsize="end"
+            android:gravity="center"
+            android:ellipsize="end"
            
             android:paddingRight="8dp"
             android:paddingLeft="2dp"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
            android:lines="2"
-           
+           android:textStyle="bold"
             />
         <LinearLayout
             android:id="@+id/sections_holder"
@@ -110,16 +108,8 @@
                 android:orientation="vertical" >
             </LinearLayout>
         </LinearLayout>
-        <com.youm7.newsapp.Youm7TextView 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textSize="10sp"
-            android:background="@color/Dark_Grey"
-            android:textColor="@android:color/white"
-            android:text="@string/footer_text"
-            android:gravity="center_horizontal"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"/>
+        <include layout="@layout/footer_view"/>
+       
     </LinearLayout>
 
 </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

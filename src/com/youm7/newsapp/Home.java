@@ -14,12 +14,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,7 +30,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
-public class Home extends FragmentActivity implements OnArticleSelectedListener {
+public class Home extends FragmentActivity implements OnArticleSelectedListener, OnClickListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -48,6 +50,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	FragmentManager MainfragmentManager;
 	FragmentTransaction trans;
 	HomeFragment Startingfrag;
+	ImageView logoImg;
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -68,11 +71,14 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    mLoadconfig= new ImageLoaderConfiguration.Builder(this).build();
 	    mloadImage=ImageLoader.getInstance();
 	    mloadImage.init(mLoadconfig);
+	    LayoutInflater  headerinflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    mRightMenu.addHeaderView(headerinflater.inflate(R.layout.drawer_header, null),null,false);
 	    mRightMenu.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_text_view,getResources().getStringArray(R.array.section_names)));
+	
 	    MainfragmentManager= getSupportFragmentManager();
 	    mRightMenu.setOnItemClickListener(new DrawerItemClickListener());       
-	     
-	      
+	     logoImg=(ImageView) findViewById(R.id.logoimg);
+	      logoImg.setOnClickListener(this);
 	       
 	}
 	@Override
@@ -115,12 +121,16 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	    SectionFragment frag= new SectionFragment();
 	   
 	   Bundle 	sectionDetails= new Bundle();
-	   sectionDetails.putString("SecTitle", getResources().getStringArray(R.array.section_names)[position]);
+	   sectionDetails.putString("SecTitle", getResources().getStringArray(R.array.section_names)[position-1]);
 	   sectionDetails.putString("SecID",Integer.toString( getResources().getIntArray(R.array.sectionIDs)[position-1])); 	
 	   frag.setArguments(sectionDetails);
 	   trans=MainfragmentManager.beginTransaction();
 	   trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-	       trans.replace(R.id.FragHolder, frag).addToBackStack(null);
+	       trans.replace(R.id.FragHolder, frag);
+	       if(getSupportFragmentManager().findFragmentByTag("Homefrag")!=null)
+	    	   trans.addToBackStack("Homefrag");
+	       else 
+	    	   trans.addToBackStack(null);
 	       trans.commit();
 	       mDrawerLayout.closeDrawer(mRightMenu);
 	    
@@ -132,12 +142,12 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	
 
 	@Override
-	public void OnArticleSelected(Fragment frag, Fragment LeavingFrsg,
+	public void OnHomeArticleSelected(Fragment frag, Fragment LeavingFrsg,
 			boolean AddToBS) {
 		// TODO Auto-generated method stub
 		
 		FragmentTransaction trans=getSupportFragmentManager().beginTransaction();
-		trans.replace(R.id.FragHolder, frag).addToBackStack("artsource");
+		trans.replace(R.id.FragHolder, frag).addToBackStack("Homefrag");
 		trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 		trans.commit();
 	}
@@ -146,7 +156,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 		// TODO Auto-generated method stu
 	
 	   
-		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, Startingfrag).commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, Startingfrag,"Homefrag").commit();
 		getActionBar().show();
 		getActionBar().getCustomView().findViewById(R.id.ImageView2).setOnClickListener(new OnClickListener() {
 			
@@ -175,5 +185,19 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener 
 	{
 		ConnectivityManager cm= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		return cm.getActiveNetworkInfo()!=null && cm.getActiveNetworkInfo().isConnected();
+	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		MainfragmentManager.popBackStack("Homefrag",FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		
+	}
+	@Override
+	public void onSecArticleSelected(Fragment frag, Fragment LeavingFrsg, boolean AddToBS) {
+		// TODO Auto-generated method stub
+		FragmentTransaction trans=getSupportFragmentManager().beginTransaction();
+		trans.replace(R.id.FragHolder, frag).addToBackStack("secfrag");
+		trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		trans.commit();
 	}
 	}

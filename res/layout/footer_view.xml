@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <com.youm7.newsapp.Youm7TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="12sp"
+            android:background="@color/Dark_Grey"
+            android:textColor="@android:color/white"
+            android:text="@string/footer_text"
+            android:gravity="center_horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>

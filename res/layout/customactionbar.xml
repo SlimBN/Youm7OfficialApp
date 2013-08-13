@@ -18,11 +18,12 @@
         android:src="@drawable/menu" />
 
     <ImageView
-        android:id="@+id/article_body"
+        android:id="@+id/logoimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/ImageView2"
+        android:background="@drawable/logo_bg"
         android:scaleType="centerInside"
         android:src="@drawable/ic_logo" />
 

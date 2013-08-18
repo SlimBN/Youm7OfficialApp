@@ -9,7 +9,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
+import android.support.v7.app.ActionBarActivity;
 
 
 
@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
     IconPageIndicator topindicator;
     Youm7TextView mogazTitle;
     PullToRefreshViewPager mRefViewpager;
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -72,7 +73,8 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		mRefViewpager.getLoadingLayoutProxy().setPullLabel(null);
 		mRefViewpager.getLoadingLayoutProxy().setRefreshingLabel(null);
 		mRefViewpager.getLoadingLayoutProxy().setReleaseLabel(null);
-		topindicator=(IconPageIndicator) FragmentView.findViewById(R.id.idicator);	
+		topindicator=(IconPageIndicator) FragmentView.findViewById(R.id.idicator);
+		
 		pullToRefreshView = (PullToRefreshScrollView) FragmentView;	
 		pullToRefreshView.getLoadingLayoutProxy().setRefreshingLabel(getString(R.string.Refreshing_label));
 		pullToRefreshView.getLoadingLayoutProxy().setPullLabel(getString(R.string.pull_label));
@@ -110,6 +112,8 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 			}
 		});
 	       mogazpager.setCurrentItem(100, false);
+	       mViewPager.setCurrentItem(TopstoryAdapter.getCount()-1,true);
+	     
 	        //end of mogaz part
 			pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 			    @Override
@@ -163,7 +167,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		
 		// TODO Auto-generated method stu
 	    super.onStart();
-	    getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.INVISIBLE);
+	    ((ActionBarActivity)( getActivity())).getSupportActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.INVISIBLE);
 		 
 	}
 
@@ -216,6 +220,31 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		Log.d("home clicked ", "true");
 		CallActivity.OnHomeArticleSelected(frag,this,true);
 	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.e("mainfrag", "paused");
+		
+	}
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		Log.e("mainfrag", "onsaveinsstancestate");
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.e("mainfrag", "stopped");
+	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+	}
 	
 	@Override
 	public void RefreshFinished() {
@@ -227,6 +256,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 			
 			try {
 				pullToRefreshView.onRefreshComplete();
+				
 			} catch (NullPointerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -237,9 +267,16 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 		}
 		else if(RefreshCounter==0 && FirstRun)
 		{
+			mViewPager.setAdapter(TopstoryAdapter);
+			mViewPager.setCurrentItem(TopstoryAdapter.getCount()-1);
+			mogazpager.setAdapter(mogazadapter);
+			mogazpager.setCurrentItem(100);
+			
 			pullToRefreshView.onRefreshComplete();
 			RefreshCounter=3;
+			
 		}
+		
 			
 	}
 

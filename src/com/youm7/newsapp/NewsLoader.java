@@ -11,7 +11,11 @@ import org.xmlpull.v1.XmlPullParserException;
 
 
 
+
+
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 
 public  class NewsLoader   {
@@ -32,8 +36,11 @@ public  class NewsLoader   {
 		mTaskid=TaskID;
 		TaskListener=Listener;
 		currentTasks.add(new downloadtask(newscount));
-		currentTasks.get(currentTasks.size()-1).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+		if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		
+		currentTasks.get(currentTasks.size()-1).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+		else
+			currentTasks.get(currentTasks.size()-1).execute(url);
 	}
 	public interface TaskCompletedListener {
 		public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID);

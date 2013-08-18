@@ -1,8 +1,9 @@
 package com.youm7.newsapp;
 
-import android.app.ActionBar;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +14,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.WindowCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -30,7 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
-public class Home extends FragmentActivity implements OnArticleSelectedListener, OnClickListener {
+public class Home extends ActionBarActivity implements OnArticleSelectedListener, OnClickListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,6 +44,8 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
+	public static boolean Frag_Paused;
+    public static boolean Pending_Refresh;
 	 DrawerLayout mDrawerLayout;
     FragmentManager Fm;
     ListView mRightMenu;
@@ -59,14 +65,16 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		 getActionBar().hide();
+		//supportRequestWindowFeature(Window.);
+		//supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR);
+		// getSupportActionBar().hide();
 		setContentView(R.layout.activity_home);
-		
+		getPreferences(MODE_PRIVATE).edit().putBoolean("isloading", true);
       
 	
 	    
 		mDrawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerLayout.setScrimColor(R.color.Youm7Red);
 		mRightMenu= (ListView) findViewById(R.id.drawer_listview);
 	    mLoadconfig= new ImageLoaderConfiguration.Builder(this).build();
 	    mloadImage=ImageLoader.getInstance();
@@ -77,8 +85,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 	
 	    MainfragmentManager= getSupportFragmentManager();
 	    mRightMenu.setOnItemClickListener(new DrawerItemClickListener());       
-	     logoImg=(ImageView) findViewById(R.id.logoimg);
-	      logoImg.setOnClickListener(this);
+	   
 	       
 	}
 	@Override
@@ -96,6 +103,25 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
        
         
     }
+@Override
+protected void onSaveInstanceState(Bundle outState) {
+	// TODO Auto-generated method stub
+	super.onSaveInstanceState(outState);
+	Log.e("mainactivity", "onsaveinsstancestate");
+}
+@Override
+protected void onStop() {
+	// TODO Auto-generated method stub
+	super.onStop();
+	Log.e("mainactivity", "stopped");
+}
+@Override
+protected void onPause() {
+	// TODO Auto-generated method stub
+	super.onPause();
+	Log.e("mainactivity", "paused");
+	Frag_Paused=true;
+}
 
 	@Override
 	protected void onStart() {
@@ -105,6 +131,18 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 		
 		
 		
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(Pending_Refresh)
+		{
+			
+			Frag_Paused=false;
+			OnHomeUpdateFinished();
+			
+		}
 	}
 
 	/**
@@ -154,11 +192,15 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 	@Override
 	public void OnHomeUpdateFinished() {
 		// TODO Auto-generated method stu
-	
-	   
-		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, Startingfrag,"Homefrag").commit();
-		getActionBar().show();
-		getActionBar().getCustomView().findViewById(R.id.ImageView2).setOnClickListener(new OnClickListener() {
+	if(!Frag_Paused){
+		//supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR);
+		//getSupportActionBar().show();
+		
+		getSupportFragmentManager().beginTransaction().replace(R.id.FragHolder, Startingfrag,"Homefrag").setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+		
+		 logoImg=(ImageView) getSupportActionBar().getCustomView().findViewById(R.id.logoimg);
+		 logoImg.setOnClickListener(this);
+		 getSupportActionBar().getCustomView().findViewById(R.id.ImageView2).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -169,7 +211,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 					mDrawerLayout.openDrawer(mRightMenu);
 			}
 		});
-		getActionBar().getCustomView().findViewById(R.id.fullsite).setOnClickListener(new OnClickListener() {
+		getSupportActionBar().getCustomView().findViewById(R.id.fullsite).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -180,6 +222,11 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 				
 			}
 		});
+		Pending_Refresh=false;
+	}
+	else{
+		Pending_Refresh=true;
+	}
 	}
 	public boolean isOnline()
 	{
@@ -197,7 +244,7 @@ public class Home extends FragmentActivity implements OnArticleSelectedListener,
 		// TODO Auto-generated method stub
 		FragmentTransaction trans=getSupportFragmentManager().beginTransaction();
 		trans.replace(R.id.FragHolder, frag).addToBackStack("secfrag");
-		trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		trans.commit();
 	}
 	}

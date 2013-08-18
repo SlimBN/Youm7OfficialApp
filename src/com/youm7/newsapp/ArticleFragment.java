@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,8 +45,9 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
     mloadImage.displayImage(Article.NewsImgLink, (ImageView) temp.findViewById(R.id.logoimg));
 	((TextView) temp.findViewById(R.id.youmTextView1)).setText(Article.NewsTitle);
 	loadArticleBody.loadSection(articleapi+Article.NewsId, this, 1);
-	 getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.VISIBLE);
-	return temp;
+	((ActionBarActivity)( getActivity())).getSupportActionBar().getCustomView().findViewById(R.id.share_icon).setVisibility(View.VISIBLE);
+	
+	 return temp;
 	}
 
 
@@ -91,7 +93,7 @@ public class ArticleFragment extends Fragment implements TaskCompletedListener {
 	    	 Article=result.get(0);
 			((TextView)	getView().findViewById(R.id.youmTextView2)).setText(Article.NewsContent);
 			((TextView) getView().findViewById(R.id.youm7TextView3)).setText(Article.NewsDateString);
-			getActivity().getActionBar().getCustomView().findViewById(R.id.share_icon).setOnClickListener(new OnClickListener() {
+			((ActionBarActivity)( getActivity())).getSupportActionBar().getCustomView().findViewById(R.id.share_icon).setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {

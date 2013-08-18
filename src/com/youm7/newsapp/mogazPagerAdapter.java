@@ -100,11 +100,19 @@ LayoutInflater mogazInflater;
 	}
    public NewsItem getItem(int position)
    {
+	   try{
 	   return mTopNews.get(position%mTopNews.size());
+	   }
+	   catch(ArithmeticException e)
+	   {
+		   e.printStackTrace();
+		   return null;
+	   }
    }
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
+	
 		mTopNews=result;
 		TopStoryListener.RefreshFinished();
 		notifyDataSetChanged();

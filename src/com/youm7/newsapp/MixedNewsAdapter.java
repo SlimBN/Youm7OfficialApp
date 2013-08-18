@@ -23,7 +23,7 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 
 	OnHomeArticleSelected HomeFrag;
 	
-	private volatile  SparseArrayCompat<NewsItem>  mixednews;
+	private volatile  ArrayList<NewsItem>  mixednews;
 	NewsLoader mLoader;
 	LinearLayout RightColumn;
 	LinearLayout LeftColumn;
@@ -34,7 +34,7 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 	private ImageLoader mImageloader;
 	private LayoutInflater inflater;
 	private String[] mSectionNames;
-	String[] mSectionIds;
+	String mSectionIds;
 	volatile int j=0;
 	OnArticleSelectedListener Articleclicklistener;
 	static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
@@ -49,10 +49,10 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 		
 		this.context = context;
 		mLoader= new NewsLoader();
-		mSectionIds=context.getResources().getStringArray(R.array.home_sectionID);
+		mSectionIds=context.getResources().getString(R.string.homesectionnews);
 		mSectionNames= context.getResources().getStringArray(R.array.home_sectionNames);
-		NumberOfSections=mSectionIds.length;
-		mixednews=new SparseArrayCompat<NewsItem>();
+		
+		mixednews=new ArrayList<NewsItem>();
 		inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		UpdateSections();
 	}
@@ -75,29 +75,21 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 	}
 	public void UpdateSections()
 	{
-		for(i=0;i<NumberOfSections;i++)
-		{
+		
+		
 		mLoader=new NewsLoader();
-		mLoader.loadSection(ConstructURL(mSectionIds[i]), this, 5,i);
-		}
-		i=0;
+		mLoader.loadSection(mSectionIds, this, 100);
+		
+		
 	}
 	@Override
 	public  synchronized void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 	
-	mixednews.put(taskID*5,result.get(0));
-	mixednews.put(taskID*5+1,result.get(1));
-	mixednews.put(taskID*5+2,result.get(2));
-	mixednews.put(taskID*5+3,result.get(3));
-	mixednews.put(taskID*5+4,result.get(4));
-	j++;
-	if(j==NumberOfSections)
-	{
-		j=0;
-		
+	mixednews=result;
+	
 		setAdapter(null);
 		
-	}
+	
 	
 		
 		

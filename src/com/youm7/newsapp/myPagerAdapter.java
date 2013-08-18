@@ -2,6 +2,7 @@ package com.youm7.newsapp;
 
 import java.lang.Character.UnicodeBlock;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -92,6 +93,7 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 	     
 	
 	}
+	
 @Override
 	public int getItemPosition(Object object) {
 		// TODO Auto-generated method stub
@@ -99,12 +101,13 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 	}
    public NewsItem getItem(int position)
    {
-	   return mTopNews.get(position);
+	   return mTopNews.get(mTopNews.size()-1-position);
    }
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
 		mTopNews=result;
+		Collections.reverse(mTopNews);
 		TopStoryListener.RefreshFinished();
 		notifyDataSetChanged();
 		
@@ -123,8 +126,8 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 		// TODO Auto-generated method stub
 		
 	
-		 if(event.getAction()==MotionEvent.ACTION_UP||event.getAction()==MotionEvent.ACTION_CANCEL)
-		v.setAlpha(1);
+		 /*if(event.getAction()==MotionEvent.ACTION_UP||event.getAction()==MotionEvent.ACTION_CANCEL)
+		v.setAlpha(1);*/
 		return false;
 	}
 

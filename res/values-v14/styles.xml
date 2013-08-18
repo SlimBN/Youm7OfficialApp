@@ -5,21 +5,21 @@
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     -->
-   <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+   <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/myactiobar</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:windowActionBar">false</item>
+        <!--  <item name="android:windowActionBar">false</item>-->
           <item name="android:windowTitleSize">0dp</item>
           <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
     </style>
-<style name="myactiobar" parent="@android:style/Widget.Holo.Light.ActionBar">
+<style name="myactiobar" parent="@style/Widget.AppCompat.Light.ActionBar">
     
   <item name="android:background">@drawable/news_block_bg</item>
   <item name="android:textColor">@color/Youm7Red</item>
   <item name="android:displayOptions">showCustom</item>
- <item name="android:actionBarSize">100dp</item>
-       
+ <item name="android:actionBarSize">@dimen/action_bar_default_height</item>
+  <item name="actionBarSize">100dp</item>
     <item name="android:customNavigationLayout">@layout/customactionbar</item>
 </style>
 </resources>

@@ -23,7 +23,7 @@
             android:padding="3dp"
             android:text="Youm7TextView"
             android:textColor="@color/Youm7Red"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
          <com.youm7.newsapp.Youm7TextView
@@ -52,7 +52,7 @@
             android:layout_below="@id/logoimg"
             android:background="@color/White"
             android:padding="8dp"
-            android:textSize="17sp" />
+            android:textSize="18sp" />
 
        <include layout="@layout/footer_view" 
             android:id="@+id/footer_view"

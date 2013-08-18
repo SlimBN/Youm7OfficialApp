@@ -2,5 +2,5 @@
 <resources>
     <string name="sectionapi">http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/{SecID}/page/1</string>
     <string name="ArticleAPI">http://mobrss.youm7.com/rss/service.svc/SelectForNewsDetails/id/</string>
-    
+     <string name="homesectionnews">http://41.128.134.138/youm7_mobilesite/homesectionsservice.php</string>
 </resources>

@@ -230,7 +230,7 @@ public class HomeFragment extends Fragment implements OnHomeArticleSelected ,OnC
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
+ 		super.onSaveInstanceState(outState);
 		Log.e("mainfrag", "onsaveinsstancestate");
 	}
 	@Override

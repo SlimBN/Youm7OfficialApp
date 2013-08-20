@@ -20,27 +20,13 @@
 
     <ImageView
         android:id="@+id/secimg"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="134dp"
+        android:layout_height="104dp"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/SecTitleTV"
-        android:background="#F0F0F0" />
-
-    <com.youm7.newsapp.Youm7TextView
-        android:id="@+id/mainarticleTV"
-        style="@style/homesectionstyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/secimg"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="2dp"
         android:background="#F0F0F0"
-        android:lines="4"
-        android:padding="2dp"
-        android:paddingRight="5dp"
-        android:textColor="@color/Youm7Red"
-        android:textColorHint="@color/Youm7Red"
-        android:textStyle="bold" />
+        android:padding="2dp" />
 
     <com.youm7.newsapp.Youm7TextView
         android:id="@+id/secondarticleTV"
@@ -48,9 +34,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/mainarticleTV"
+        android:layout_below="@+id/secimg"
         android:layout_marginBottom="2dp"
-        android:lines="4"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
         android:textColor="@android:color/black" />
 
     <com.youm7.newsapp.Youm7TextView
@@ -62,7 +49,8 @@
         android:layout_below="@+id/secondarticleTV"
         android:layout_marginBottom="2dp"
         android:background="#F0F0F0"
-        android:lines="4"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
         android:padding="2dp"
         android:textColor="@android:color/black" />
 
@@ -75,7 +63,8 @@
         android:layout_below="@+id/thirdarticleTV"
         android:layout_marginBottom="2dp"
         android:background="#F0F0F0"
-        android:lines="4"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
         android:padding="2dp"
         android:textColor="@android:color/black" />
 
@@ -88,8 +77,23 @@
         android:layout_below="@+id/fourtharticleTV"
         android:layout_marginBottom="2dp"
         android:background="#F0F0F0"
-        android:lines="4"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
         android:padding="2dp"
         android:textColor="@android:color/black" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/mainarticleTV"
+        style="@style/homesectionstyle"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_below="@+id/SecTitleTV"
+        android:layout_toLeftOf="@+id/secimg"
+        android:background="#F0F0F0"
+        android:padding="2dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/Youm7Red"
+        android:textColorHint="@color/Youm7Red"
+        android:textStyle="bold" />
 
 </RelativeLayout>

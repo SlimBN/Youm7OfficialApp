@@ -11,6 +11,7 @@ public class NewsItem implements Serializable
 		String NewsTitle;
 		String NewsContent;
 		String NewsImgLink;
+		String mImgLinkMed;
 		String NewsLink;
 		List<String> NewsImgs;
 		Date NewsDate;

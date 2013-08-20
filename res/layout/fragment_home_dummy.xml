@@ -85,28 +85,11 @@
             android:id="@+id/sections_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#fffffe"
+            android:orientation="vertical"
+            
             android:baselineAligned="true"
             android:paddingTop="10dp" >
 
-            <LinearLayout
-                android:id="@+id/leftcolumnView"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="2dp"
-                android:orientation="vertical" >
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/rightcolumnView"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="2dp"
-                android:orientation="vertical" >
-            </LinearLayout>
         </LinearLayout>
         <include layout="@layout/footer_view"/>
        

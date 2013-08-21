@@ -36,7 +36,7 @@ static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
 .cacheOnDisc(true)
 .build(); 
 OnHomeArticleSelected TopStoryListener;
-static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
+static String topurl;
 	ImageLoader mUniversalimageloader;
 	public myPagerAdapter(int ViewCount,Context context,ImageLoader universalimageloader,OnHomeArticleSelected topstory) {
 		// TODO Auto-generated constructor stub
@@ -44,7 +44,7 @@ static String topurl="http://mobrss.youm7.com/rss/Service.svc/NewsTopStories";
 		mViewPagerInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.context=context;
 		mTopNews=new ArrayList<NewsItem>();
-		
+		topurl=context.getString(R.string.TopService);
 		mUniversalimageloader=universalimageloader;
 		TopStoryListener=topstory;
 		UpdateTopStory();

@@ -1700,7 +1700,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int ArticleAPI=0x7f0a0014;
-        public static final int Refreshing_label=0x7f0a001b;
+        public static final int Refreshing_label=0x7f0a001c;
+        public static final int TopService=0x7f0a0016;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1741,13 +1742,13 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int action_settings=0x7f0a0017;
-        public static final int app_name=0x7f0a0016;
-        public static final int drawer_close=0x7f0a0019;
-        public static final int drawer_open=0x7f0a0018;
-        public static final int footer_text=0x7f0a001a;
+        public static final int action_settings=0x7f0a0018;
+        public static final int app_name=0x7f0a0017;
+        public static final int drawer_close=0x7f0a001a;
+        public static final int drawer_open=0x7f0a0019;
+        public static final int footer_text=0x7f0a001b;
         public static final int homesectionnews=0x7f0a0015;
-        public static final int pull_label=0x7f0a001c;
+        public static final int pull_label=0x7f0a001d;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -1757,7 +1758,7 @@ containing a value of this type.
         public static final int pull_to_refresh_pull_label=0x7f0a000d;
         public static final int pull_to_refresh_refreshing_label=0x7f0a000f;
         public static final int pull_to_refresh_release_label=0x7f0a000e;
-        public static final int release_label=0x7f0a001d;
+        public static final int release_label=0x7f0a001e;
         public static final int sectionapi=0x7f0a0013;
     }
     public static final class style {

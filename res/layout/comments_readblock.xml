@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/comments_block"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/com_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="2dp"
+        android:background="#f0f0f0"
+        android:gravity="right|center_vertical"
+        android:minHeight="48dp"
+        android:paddingRight="60dp"
+        android:textColor="@color/Youm7Red"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/com_writer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/com_title"
+        android:background="#f0f0f0"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
+        android:gravity="right|center_vertical"
+        android:paddingRight="5dp" />
+
+    <TextView
+        android:id="@+id/com_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/com_writer"
+        android:background="#f0f0f0"
+        android:drawablePadding="2dp"
+        android:drawableRight="@drawable/sec_date"
+        android:gravity="right|center_vertical"
+        android:paddingRight="5dp" />
+
+    <TextView
+        android:id="@+id/com_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/com_date"
+        android:background="#f0f0f0"
+        android:gravity="right|fill_vertical"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp" />
+
+    <TextView
+        android:id="@+id/com_num"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#9D9D9D"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/White" />
+
+</RelativeLayout>

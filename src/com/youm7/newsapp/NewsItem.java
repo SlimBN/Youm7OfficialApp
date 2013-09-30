@@ -1,18 +1,28 @@
 package com.youm7.newsapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class NewsItem implements Serializable
 	{
-//news details
+/**
+	 * 
+	 */
+
+		//news details
 		String NewsId;
 		String NewsTitle;
 		String NewsContent;
 		String NewsImgLink;
 		String NewsLink;
-		List<String> NewsImgs;
+		String MedImgLink;
+		String smallImageLink;
+		String newsWriter;
+		String numberofcomments;
+		List<String> imgLinks;
+		List<String> videoLinks;
 		Date NewsDate;
 		String NewsDateString;
 		String NewsAbstract;
@@ -28,7 +38,8 @@ public class NewsItem implements Serializable
 		boolean imagedownloaded;
 	public NewsItem()
 		{
-			
+		imgLinks=new ArrayList<String>();
+		videoLinks=new ArrayList<String>();
 		}
 		
 	}

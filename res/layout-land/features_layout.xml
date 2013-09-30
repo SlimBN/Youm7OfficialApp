@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/featuresRL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp" >
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/SecTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/section_head_bg"
+        android:gravity="right|center_vertical"
+        android:paddingBottom="1dp"
+        android:paddingRight="12dp"
+        android:paddingTop="1dp"
+        android:text="تحقيقات و ملفات"
+        android:textColor="@color/White"
+        android:textSize="18sp" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/mainarticleTV"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="false"
+        android:layout_below="@id/SecTitleTV"
+        android:layout_marginBottom="5dp"
+        android:background="#F0F0F0"
+        android:ellipsize="end"
+        android:gravity="top|right"
+        android:lines="6"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="80dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/Youm7Red"
+        android:textColorHint="@color/Youm7Red"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/secimg1"
+        android:layout_width="75dp"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/SecTitleTV"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"
+        android:padding="1dp"
+        android:scaleType="fitXY" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/secondarticleTV"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/mainarticleTV"
+        android:layout_marginBottom="2dp"
+        android:background="#F0F0F0"
+        android:ellipsize="end"
+        android:gravity="top|right"
+        android:lines="6"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="80dp"
+        android:paddingTop="2dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.youm7.newsapp.Youm7TextView
+        android:id="@+id/thirdarticleTV"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/secimg3"
+        android:layout_below="@+id/secondarticleTV"
+        android:layout_marginBottom="2dp"
+        android:background="#F0F0F0"
+        android:ellipsize="end"
+        android:gravity="top|right"
+        android:lines="6"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="80dp"
+        android:paddingTop="2dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/secimg2"
+        android:layout_width="75dp"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@id/mainarticleTV"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"
+        android:padding="1dp"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/secimg3"
+        android:layout_width="75dp"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@id/secondarticleTV"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"
+        android:padding="1dp"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

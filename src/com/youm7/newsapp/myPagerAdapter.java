@@ -32,6 +32,7 @@ NewsLoader mloadTopStory;
 ArrayList<NewsItem> mTopNews;
 Context context;
 static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
+.showStubImage(R.drawable.loader_top)
 .cacheInMemory(true)
 .cacheOnDisc(true)
 .build(); 
@@ -106,11 +107,16 @@ static String topurl;
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
+		if(result==null || result.size()==0)
+			UpdateTopStory();
+		else{
 		mTopNews=result;
-		Collections.reverse(mTopNews);
-		TopStoryListener.RefreshFinished();
-		notifyDataSetChanged();
 		
+		Collections.reverse(mTopNews);
+		notifyDataSetChanged();
+		TopStoryListener.RefreshFinished();
+		
+		}
 	}
 
 

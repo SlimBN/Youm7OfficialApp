@@ -13,10 +13,12 @@ import org.xmlpull.v1.XmlPullParserException;
 
 
 
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 public  class NewsLoader   {
 	
@@ -93,7 +95,7 @@ private class downloadtask extends AsyncTask<String, Void, ArrayList<NewsItem>>
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
 		
-		
+		    Log.e("parsing done", "done");
 			TaskListener.OnTaskCompleted(result, mTaskid);
 		
 		

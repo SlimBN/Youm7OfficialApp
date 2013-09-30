@@ -1,6 +1,7 @@
 package com.youm7.newsapp;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,8 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 	LinearLayout RightColumn;
 	LinearLayout LeftColumn;
 	LinearLayout holder;
+	RelativeLayout featuresHolder;
+	List<NewsItem> featurenews;
 	private Context context;
 	private int NumberOfSections;
 	int i=0;
@@ -51,27 +54,35 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 		mLoader= new NewsLoader();
 		mSectionIds=context.getResources().getString(R.string.homesectionnews);
 		mSectionNames= context.getResources().getStringArray(R.array.home_sectionNames);
-		
+		featurenews =new ArrayList<NewsItem>();
 		mixednews=new ArrayList<NewsItem>();
 		inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		UpdateSections();
 	}
-	public void setAdapter(View holder)
+	public void setAdapter(View holder,View features)
 	{
 		if(holder!=null)
 		{
 		this.holder = (LinearLayout) holder;
 		RightColumn=(LinearLayout) holder.findViewById(R.id.rightcolumnView);
 		LeftColumn=(LinearLayout) holder.findViewById(R.id.leftcolumnView);
-		}
+	    featuresHolder =(RelativeLayout) features;
+	
+		if(mixednews.size()>0 && this.holder.getChildCount()<3)
 		
-		try {
 			FillLayout();
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
-		HomeFrag.RefreshFinished();
+		else{
+			
+			try {
+				FillLayout();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	public void UpdateSections()
 	{
@@ -84,11 +95,16 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 	}
 	@Override
 	public  synchronized void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
-	
-	mixednews=result;
-	
-		setAdapter(null);
+		if (result!=null)
+		{
 		
+     	mixednews= result;
+	    
+		setAdapter(null,null);
+		HomeFrag.RefreshFinished();
+		}
+		else 
+			UpdateSections();
 	
 	
 		
@@ -97,16 +113,46 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 	private void FillLayout() {
 		// TODO Auto-generated method stub
 		//fill the right comlumn
-		int j= mixednews.size();
-		RightColumn.removeAllViews();
-		LeftColumn.removeAllViews();
-		for(int i=0;i<j;i+=10)
+		int i=0;
+		((TextView)(featuresHolder.findViewById(R.id.mainarticleTV))).setText(mixednews.get(i).NewsTitle);
+		((TextView)(featuresHolder.findViewById(R.id.mainarticleTV))).setOnClickListener(this);
+		((TextView)(featuresHolder.findViewById(R.id.mainarticleTV))).setTag(mixednews.get(i));
+		ImageView tempimg=(ImageView) featuresHolder.findViewById(R.id.secimg1);
+	    mImageloader.displayImage(mixednews.get(i).smallImageLink.replace("/large/", "/small/"),tempimg,dispoptions);
+	    tempimg.setTag(mixednews.get(i));
+	    tempimg.setOnClickListener(this);
+		((TextView)(featuresHolder.findViewById(R.id.secondarticleTV))).setText(mixednews.get(1).NewsTitle);
+		((TextView)(featuresHolder.findViewById(R.id.secondarticleTV))).setTag(mixednews.get(1));
+		((TextView)(featuresHolder.findViewById(R.id.secondarticleTV))).setOnClickListener(this);
+		 tempimg=(ImageView) featuresHolder.findViewById(R.id.secimg2);
+	    mImageloader.displayImage(mixednews.get(1).smallImageLink.replace("/large/", "/small/"),tempimg,dispoptions);
+	    tempimg.setTag(mixednews.get(1));
+	    tempimg.setOnClickListener(this);
+		((TextView)(featuresHolder.findViewById(R.id.thirdarticleTV))).setText(mixednews.get(2).NewsTitle);
+		((TextView)(featuresHolder.findViewById(R.id.thirdarticleTV))).setTag(mixednews.get(2));
+		((TextView)(featuresHolder.findViewById(R.id.thirdarticleTV))).setOnClickListener(this);
+		 tempimg=(ImageView) featuresHolder.findViewById(R.id.secimg3);
+	    mImageloader.displayImage(mixednews.get(2).smallImageLink.replace("/large/", "/small/"),tempimg,dispoptions);
+	    tempimg.setTag(mixednews.get(2));
+	    tempimg.setOnClickListener(this);
+		int j= 55;
+		//RightColumn.removeAllViews();
+		//LeftColumn.removeAllViews();
+		RelativeLayout temp;
+		for( i=5;i<j;i+=10)
 		{
-			RelativeLayout temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
+			if(RightColumn.getChildAt(i/5-1)!=null){
+				 temp= (RelativeLayout) RightColumn.getChildAt(i/5-1);
+			}
+			else{
+				 temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
+		         RightColumn.addView(temp);
+			}
+			
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setText(mixednews.get(i).NewsTitle);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setOnClickListener(this);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setTag(mixednews.get(i));
-			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/5]);
+			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/5-1]);
 			
 			((TextView)(temp.findViewById(R.id.secondarticleTV))).setText(mixednews.get(i+1).NewsTitle);
 			((TextView)(temp.findViewById(R.id.secondarticleTV))).setTag(mixednews.get(i+1));
@@ -120,17 +166,24 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setText(mixednews.get(i+4).NewsTitle);
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setTag(mixednews.get(i+4));
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setOnClickListener(this);
-			ImageView tempimg=(ImageView) temp.findViewById(R.id.secimg);
-		    mImageloader.displayImage(mixednews.get(i).NewsImgLink,tempimg,dispoptions);
+			tempimg=(ImageView) temp.findViewById(R.id.secimg);
+		    mImageloader.displayImage(mixednews.get(i).smallImageLink.replace("/large/", "/medium/"),tempimg,dispoptions);
 		    tempimg.setTag(mixednews.get(i));
 		    tempimg.setOnClickListener(this);
 		    
-			RightColumn.addView(temp);
+			
 		}
 		// fill left column
-		for(int i=5;i<j;i+=10)
+		for( i=10;i<j;i+=10)
 		{
-			RelativeLayout temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
+			if(LeftColumn.getChildAt(i/10-1)!=null){
+				 temp= (RelativeLayout) LeftColumn.getChildAt(i/10-1);
+			}
+			else{
+				 temp=	(RelativeLayout) inflater.inflate(R.layout.homenewssection, null);
+		         LeftColumn.addView(temp);
+			}
+			
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setText(mixednews.get(i).NewsTitle);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setOnClickListener(this);
 			((TextView)(temp.findViewById(R.id.mainarticleTV))).setTag(mixednews.get(i));
@@ -146,12 +199,12 @@ public class MixedNewsAdapter implements  TaskCompletedListener,OnClickListener{
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setText(mixednews.get(i+4).NewsTitle);
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setTag(mixednews.get(i+4));
 			((TextView)(temp.findViewById(R.id.fiftharticleTV))).setOnClickListener(this);
-			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/5]);
-		ImageView tempimg=(ImageView) temp.findViewById(R.id.secimg);
-		    mImageloader.displayImage(mixednews.get(i).NewsImgLink,tempimg,dispoptions);
+			((TextView)(temp.findViewById(R.id.SecTitleTV))).setText(mSectionNames[i/5-1]);
+		    tempimg=(ImageView) temp.findViewById(R.id.secimg);
+		    mImageloader.displayImage(mixednews.get(i).smallImageLink.replace("/large/", "/medium/"),tempimg,dispoptions);
 		    tempimg.setTag(mixednews.get(i));
 		    tempimg.setOnClickListener(this);
-		    LeftColumn.addView(temp);
+		   // LeftColumn.addView(temp);
 			
 		}
 		

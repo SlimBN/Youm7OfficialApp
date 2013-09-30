@@ -29,18 +29,21 @@ import android.widget.TextView;
 
 public class SectionNewsAdapter extends BaseAdapter implements TaskCompletedListener {
 
-	private   String SectionURL="http://mobrss.youm7.com/rss/service.svc/SelectForSpecifiedSection/SecID/65/page/1";
+	private   String SectionURL;
 	private ArrayList<NewsItem> mNewslist;
 	LayoutInflater mAdapterinflater;
 	RelativeLayout mNewsBlock;
 	static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
+	.showStubImage(R.drawable.loader_sec)
 	.cacheInMemory(true)
 	.cacheOnDisc(true)
 	.build(); 
 	 NewsLoader sectionloader;
 		ImageLoader mUniversalimageloader;
 	int mViewTypeCount;
-OnHomeArticleSelected RefreshFinishedlistener;
+    OnHomeArticleSelected RefreshFinishedlistener;
+    boolean is_loading;
+    int page=0;
 	public SectionNewsAdapter( ArrayList<NewsItem> newslist,Context context, int viewTypeCount,ImageLoader Universalimageloader,String sectionurl, OnHomeArticleSelected refreshlistener) {
 		
 		
@@ -55,7 +58,17 @@ OnHomeArticleSelected RefreshFinishedlistener;
 	}
 	public void UpdateSection(){
 		sectionloader= new NewsLoader();
-        sectionloader.loadSection(SectionURL, this, 100);
+		
+        sectionloader.loadSection(SectionURL, this, 100,0);
+       
+        is_loading=true;
+	}
+	public void getOldNews(){
+        sectionloader= new NewsLoader();
+		page=(getCount()/25)+1;
+        sectionloader.loadSection(SectionURL+"&Page="+page, this, 100,1);
+       
+        is_loading=true;
 	}
 @Override
 public int getItemViewType(int position) {
@@ -104,7 +117,7 @@ public int getViewTypeCount() {
 		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
 		((Youm7TextView) (mNewsBlock.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
 		
-		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
+		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink.replace("/large/", "/medium/"),  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
 	 	return mNewsBlock;
 			}
 			else 
@@ -112,7 +125,7 @@ public int getViewTypeCount() {
 				 mNewsBlock= (RelativeLayout) mAdapterinflater.inflate(R.layout.news_block_layout, null);
 					((Youm7TextView) (mNewsBlock.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
 					((Youm7TextView) (mNewsBlock.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
-					mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
+					mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink.replace("/large/", "/small/"),  ( (ImageView) (mNewsBlock.findViewById(R.id.newsimageview))),dispoptions);
 					return mNewsBlock;
 			}
 			
@@ -122,7 +135,10 @@ public int getViewTypeCount() {
 		{
 		((Youm7TextView) (convertView.findViewById(R.id.news_abstract_textview))).setText(mNewslist.get(position).NewsAbstract);
 		((Youm7TextView) (convertView.findViewById(R.id.news_title_textview))).setText(mNewslist.get(position).NewsTitle);
-		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink,  ( (ImageView) (convertView.findViewById(R.id.newsimageview))),dispoptions);
+		if(position==0)
+		mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink.replace("/large/", "/medium/"),  ( (ImageView) (convertView.findViewById(R.id.newsimageview))),dispoptions);
+		else
+			mUniversalimageloader.displayImage(mNewslist.get(position).NewsImgLink.replace("/large/", "/small/"),  ( (ImageView) (convertView.findViewById(R.id.newsimageview))),dispoptions);	
 		return convertView;
 	    }
 		
@@ -132,9 +148,28 @@ public int getViewTypeCount() {
 }
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
+		if(taskID==0)
+		{
+		if(result!= null){
 		mNewslist= result;
 		notifyDataSetChanged();
+		is_loading=false;
 		RefreshFinishedlistener.RefreshFinished();
-		
+		}
+		else
+			UpdateSection();
 	}
+	
+	else{
+		if(result!= null){
+			mNewslist.addAll(result);
+			notifyDataSetChanged();
+			is_loading=false;
+			RefreshFinishedlistener.RefreshFinished();
+			}
+			else
+				UpdateSection();
+		}
+			
+		}
 }

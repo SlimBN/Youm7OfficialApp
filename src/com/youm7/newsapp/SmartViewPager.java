@@ -45,7 +45,7 @@ public class SmartViewPager extends ViewPager {
         // Methods
         //
         // -----------------------------------------------------------------------
-        
+       
         @Override
         public boolean onTouchEvent(MotionEvent event) {
                 // decide if horizontal axis is locked already or we need to check the scrolling direction

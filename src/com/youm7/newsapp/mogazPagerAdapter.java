@@ -30,11 +30,12 @@ NewsLoader mloadTopStory;
 ArrayList<NewsItem> mTopNews;
 Context context;
 static DisplayImageOptions dispoptions= new DisplayImageOptions.Builder()
+.showStubImage(R.drawable.loader_top)
 .cacheInMemory(true)
 .cacheOnDisc(true)
 .build(); 
 OnHomeArticleSelected TopStoryListener;
-static String topurl="http://41.128.134.138/youm7_mobilesite/mogazservice.php";
+static String topurl;
 LayoutInflater mogazInflater;
 	ImageLoader mUniversalimageloader;
 	public mogazPagerAdapter(int ViewCount,Context context,ImageLoader universalimageloader,OnHomeArticleSelected topstory) {
@@ -43,7 +44,7 @@ LayoutInflater mogazInflater;
 		mViewPagerInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.context=context;
 		mTopNews=new ArrayList<NewsItem>();
-		
+		topurl= context.getString(R.string.mogazservice);
 		mUniversalimageloader=universalimageloader;
 		TopStoryListener=topstory;
 		mogazInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -57,7 +58,7 @@ LayoutInflater mogazInflater;
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		if(mTopNews!=null)
+		if( mTopNews.size()!=0)
 		return 200;
 		return 0;
 	}
@@ -81,7 +82,7 @@ LayoutInflater mogazInflater;
 	
 		  
 	    
-		 mUniversalimageloader.displayImage(mTopNews.get(position%mTopNews.size()).NewsImgLink,  temp, dispoptions);  
+		 mUniversalimageloader.displayImage(mTopNews.get(position%mTopNews.size()).NewsImgLink.replace("/large/", "/medium/"),  temp, dispoptions);  
 		 temp.setTag(mTopNews.get(position%mTopNews.size()));
 	     temp.setOnClickListener(this);
 	   //  temp.setOnTouchListener(this);
@@ -112,10 +113,13 @@ LayoutInflater mogazInflater;
 	@Override
 	public void OnTaskCompleted(ArrayList<NewsItem> result, int taskID) {
 		// TODO Auto-generated method stub
-	
+	if(result==null || result.size()==0)
+		UpdateTopStory();
+	else{
 		mTopNews=result;
-		TopStoryListener.RefreshFinished();
 		notifyDataSetChanged();
+		TopStoryListener.RefreshFinished();
+		}
 		
 	}
 

@@ -9,6 +9,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.util.Log;
+
 public class XmlParser {
 
 	org.xmlpull.v1.XmlPullParser newsparser;
@@ -40,51 +42,117 @@ public class XmlParser {
 	private void Parse() throws XmlPullParserException, IOException
 	{
 		eventtype=newsparser.getEventType();
-	    int position=0;
-		while (eventtype != XmlPullParser.END_DOCUMENT&&position<mElementsCount){
+	    String tagName;
+	    NewsItem temp= new NewsItem();
+		while (eventtype != XmlPullParser.END_DOCUMENT&&newslist.size()<mElementsCount){
+			
+			tagName=newsparser.getName();
 			switch(eventtype){
 			
 			case XmlPullParser.START_TAG:
-			String tagName=newsparser.getName();
+			
 			if(tagName.equalsIgnoreCase("item"))
 			{
-				newslist.add(new NewsItem());
+				temp=new NewsItem();
+				
 			}
+			
 			else if(tagName.equalsIgnoreCase("title"))
 			{
-				newslist.get(position).NewsTitle=newsparser.nextText();
+				if(newsparser.getDepth()<4)
+				temp.NewsTitle=newsparser.nextText();
 			}
 			else if(tagName.equalsIgnoreCase("id"))
 			{
-				newslist.get(position).NewsId=newsparser.nextText();
+				if(newsparser.getDepth()<4)
+				temp.NewsId=newsparser.nextText();
 			}
 			else if(tagName.equalsIgnoreCase("date"))
 			{
-				newslist.get(position).NewsDateString=newsparser.nextText();
+				temp.NewsDateString=newsparser.nextText();
 			}
 			else if(tagName.equalsIgnoreCase("mainimage"))
 			{
-				newslist.get(position).NewsImgLink=newsparser.nextText();
+				temp.NewsImgLink=newsparser.nextText();
 			}
 			else if(tagName.equalsIgnoreCase("link"))
 			{
-				newslist.get(position).NewsLink=newsparser.nextText();
+				temp.NewsLink=newsparser.nextText();
 			
 			}
 			else if(tagName.equalsIgnoreCase("abstract"))
 			{
-				newslist.get(position).NewsAbstract=newsparser.nextText();
-				position++;
+				temp.NewsAbstract=newsparser.nextText();
+				
 			}
 			else if(tagName.equalsIgnoreCase("body"))
 			{
-				newslist.get(position).NewsContent=newsparser.nextText();
-				position++;
+				temp.NewsContent=newsparser.nextText();
+				temp.NewsContent.trim();
+				
+			}
+			else if(tagName.equalsIgnoreCase("image"))
+			{
+				temp.smallImageLink=newsparser.nextText();
+				
+			}
+			
+			else if(tagName.equalsIgnoreCase("byline"))
+			{
+				temp.newsWriter=newsparser.nextText();
+				
+			}
+			else if(tagName.equalsIgnoreCase("images"))
+			{
+				if(!newsparser.isEmptyElementTag())
+				{
+					temp.Has_Images=true;
+					eventtype=newsparser.next();
+					tagName=newsparser.getName();
+					while (!tagName.equalsIgnoreCase("images"))
+					{
+						
+						if(eventtype==XmlPullParser.START_TAG)
+							temp.imgLinks.add(newsparser.nextText());
+						eventtype=newsparser.next();
+						tagName=newsparser.getName();
+						}
+					}
+			}			
+			else if(tagName.equalsIgnoreCase("videos"))
+			{
+				if(!newsparser.isEmptyElementTag())
+				{
+				temp.Has_videos=true;
+			
+				eventtype=newsparser.next();
+				tagName=newsparser.getName();
+				while (!tagName.equalsIgnoreCase("videos"))
+				{
+					if(eventtype==XmlPullParser.START_TAG)
+						temp.videoLinks.add(newsparser.nextText());
+					eventtype=newsparser.next();
+					tagName=newsparser.getName();
+				}
+			}
+				
+			}
+			else if(tagName.equalsIgnoreCase("numberofcomments"))
+			{
+				temp.numberofcomments=newsparser.nextText();
 			}
 			break;
+			case XmlPullParser.END_TAG:
+				 if(tagName.equalsIgnoreCase("item"))
+					{
+						newslist.add(temp);
+				}
+				 break;
 			}
-	eventtype=newsparser.next();
+		
+	       eventtype=newsparser.next();
 	
 		}
+		
 	}
 }

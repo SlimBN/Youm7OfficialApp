@@ -3,5 +3,8 @@
     <string name="sectionapi">http://m.youm7.com/api/sectionservice.php?SecID=</string>
     <string name="ArticleAPI">http://m.youm7.com/api/newsservice.php?NewsID=</string>
     <string name="homesectionnews">http://m.youm7.com/api/homesectionsservice.php</string>
-    <string name="TopService">http://m.youm7.com/api/topservice.php</string>     
+    <string name="TopService">http://m.youm7.com/api/topservice.php</string>  
+    <string name="mogazservice" >http://m.youm7.com/api/mogazservice.php</string>   
+     <string name="getcomments" >http://mobrss.youm7.com/rss/service.svc/SelectForEvetComments/id/newsidd/start/0/count/1000</string> 
+      <string name="postcomment" >http://www.youm7.com/includes/PostOpinion.asp?action=insert</string> 
 </resources>

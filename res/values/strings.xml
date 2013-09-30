@@ -67,6 +67,6 @@
     <string name="drawer_close">closed</string>
     <string name="footer_text">حقوق النشر محفوظة اليوم السابع  \u00A9</string>
     <string name="Refreshing_label">جارى تحميل الاخبار</string>
-    <string name="pull_label">اسحب للتحميل</string>
+    <string name="pull_label">اسحب لاسفل للتحميل</string>
      <string name="release_label">اترك للتحميل</string>
 </resources>

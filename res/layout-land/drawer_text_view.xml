@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.youm7.newsapp.Youm7TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_text_view"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@drawable/menu_tv_bg"
+    android:gravity="center_vertical|right"
+    android:paddingRight="11dp"
+    android:textColor="@color/White"
+    android:textSize="20dp"
+    android:typeface="monospace" >
+
+</com.youm7.newsapp.Youm7TextView>

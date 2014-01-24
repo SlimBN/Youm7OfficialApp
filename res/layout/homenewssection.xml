@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="2dp"
-    android:paddingRight="5dp" >
+    android:layout_marginTop="2dp" >
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/SecTitleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +19,17 @@
         android:textColor="@color/White"
         android:textSize="18sp" />
 
-    <ImageView
+    <com.youm7.news.ResizableImageView
         android:id="@+id/secimg"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/SecTitleTV"
-        android:background="#F0F0F0"
+        android:background="#cccccc"
+        android:padding="1dp"
         android:scaleType="fitXY" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/mainarticleTV"
         style="@style/homesectionstyle"
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:textColorHint="@color/Youm7Red"
         android:textStyle="bold" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/secondarticleTV"
         style="@style/homesectionstyle"
         android:layout_width="fill_parent"
@@ -56,7 +56,7 @@
         android:lines="4"
         android:textColor="@android:color/black" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/thirdarticleTV"
         style="@style/homesectionstyle"
         android:layout_width="fill_parent"
@@ -69,7 +69,7 @@
         android:padding="2dp"
         android:textColor="@android:color/black" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/fourtharticleTV"
         style="@style/homesectionstyle"
         android:layout_width="fill_parent"
@@ -82,7 +82,7 @@
         android:padding="2dp"
         android:textColor="@android:color/black" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/fiftharticleTV"
         style="@style/homesectionstyle"
         android:layout_width="fill_parent"

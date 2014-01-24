@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res/com.youm7.newsapp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.youm7.news"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/RelativeLayoutSec"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/redbars_bg"
-    android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp" >
+    android:background="@drawable/redbars_bg" >
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-8742165972829133/6545166807" />
+
+    <com.youm7.news.Youm7TextView
         android:id="@+id/News_category_title"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_margin="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/section_head_bg"
         android:gravity="right|center_vertical"
         android:paddingRight="14dp"
-        android:textColor="@color/White" 
-        android:textStyle="bold"/>
+        android:textColor="@color/White"
+        android:textStyle="bold" />
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/news_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
+        android:layout_below="@+id/News_category_title"
         android:divider="@drawable/news_listview_divider"
-         custom:ptrHeaderTextColor="@color/Youm7Red" >
-
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        custom:ptrHeaderTextColor="@color/Youm7Red" 
+        >
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
-</LinearLayout>
+
+</RelativeLayout>

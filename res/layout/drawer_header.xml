@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingRight="-10dp" >
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/drawer_header"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -16,6 +16,6 @@
         android:textColor="@color/White"
         android:textSize="20sp"
         android:typeface="monospace" >
-    </com.youm7.newsapp.Youm7TextView>
+    </com.youm7.news.Youm7TextView>
 
 </RelativeLayout>

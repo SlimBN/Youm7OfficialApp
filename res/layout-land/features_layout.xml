@@ -7,7 +7,7 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp" >
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/SecTitleTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,10 +22,10 @@
         android:textColor="@color/White"
         android:textSize="18sp" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/mainarticleTV"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
         android:layout_below="@id/SecTitleTV"
         android:layout_marginBottom="5dp"
@@ -33,6 +33,7 @@
         android:ellipsize="end"
         android:gravity="top|right"
         android:lines="6"
+        android:minHeight="120dp"
         android:paddingBottom="2dp"
         android:paddingLeft="2dp"
         android:paddingRight="80dp"
@@ -54,10 +55,10 @@
         android:padding="1dp"
         android:scaleType="fitXY" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/secondarticleTV"
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/mainarticleTV"
@@ -66,6 +67,7 @@
         android:ellipsize="end"
         android:gravity="top|right"
         android:lines="6"
+        android:minHeight="120dp"
         android:paddingBottom="2dp"
         android:paddingLeft="2dp"
         android:paddingRight="80dp"
@@ -73,10 +75,10 @@
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/thirdarticleTV"
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/secimg3"
         android:layout_below="@+id/secondarticleTV"
@@ -85,6 +87,7 @@
         android:ellipsize="end"
         android:gravity="top|right"
         android:lines="6"
+        android:minHeight="120dp"
         android:paddingBottom="2dp"
         android:paddingLeft="2dp"
         android:paddingRight="80dp"

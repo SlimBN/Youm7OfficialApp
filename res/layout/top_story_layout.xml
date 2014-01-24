@@ -8,17 +8,15 @@
     android:background="@color/top_news_bg"
     android:padding="5dp" >
 
-    <ImageView
+    <com.youm7.news.ResizableImageViewLarge
         android:id="@+id/topstoryimgview"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/topstoryimgview"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop" >
+        android:scaleType="fitXY" >
+    </com.youm7.news.ResizableImageViewLarge>
 
-    </ImageView>
-
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/toptextview"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -26,12 +24,12 @@
         android:background="@drawable/top_story_title_bg"
         android:ellipsize="marquee"
         android:gravity="right|center_vertical"
+        android:lines="2"
         android:paddingRight="8dp"
-        android:textColor="@color/White" 
-        android:textStyle="bold"
-        android:lines="2"/>
+        android:textColor="@color/White"
+        android:textStyle="bold" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/datetextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

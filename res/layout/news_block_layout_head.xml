@@ -1,51 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsblockcontainer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="fill_horizontal"
+    android:background="@color/news_block_bg"
+    android:padding="5dp
+     " >
 
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools"
-     android:id="@+id/newsblockcontainer"
-     android:layout_width="fill_parent"
-     android:layout_height="150dp"
-     android:layout_gravity="fill_horizontal"
-     android:background="@color/news_block_bg" 
-     android:padding="5dp
-     ">
+    <ImageView
+        android:id="@+id/newsimageview"
+        android:layout_width="150dp"
+        android:layout_height="110dp"
+        android:background="#cccccc"
+        android:paddingBottom="5dp"
+        android:paddingLeft="1dp"
+        android:paddingTop="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/loader_top" />
 
-     <ImageView
-         android:id="@+id/newsimageview"
-         android:layout_width="150dp"
-         android:layout_height="110dp"
-         android:paddingBottom="5dp"
-         android:paddingLeft="5dp"
-         android:paddingTop="5dp"
-         android:scaleType="centerCrop"
-         android:src="@drawable/loader_top" />
+    <com.youm7.news.Youm7TextView
+        android:id="@+id/news_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/newsimageview"
+        android:ellipsize="end"
+        android:gravity="top|right"
+        android:maxLines="4"
+        android:textColor="@color/Youm7Red"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
-     <com.youm7.newsapp.Youm7TextView
-         android:id="@+id/news_title_textview"
-         android:layout_width="match_parent"
-         android:layout_height="110dp"
-         android:layout_alignParentRight="true"
-         android:layout_toRightOf="@id/newsimageview"
-         android:ellipsize="end"
-         android:gravity="top|right"
-         android:maxLines="4"
-         android:text="Youm7TextView"
-         android:textColor="@color/Youm7Red"
-         android:textSize="18dp"
-         android:textStyle="bold" />
+    <com.youm7.news.Youm7TextView
+        android:id="@+id/news_abstract_textview"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/sec_news_date"
+        android:layout_marginTop="1dp"
+        android:ellipsize="end"
+        android:gravity="right"
+        android:lines="3"
+        android:maxLines="3"
+        android:textColor="@android:color/black" />
 
-     <com.youm7.newsapp.Youm7TextView
-         android:id="@+id/news_abstract_textview"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignLeft="@+id/newsimageview"
-         android:layout_alignParentBottom="true"
-         android:layout_alignParentRight="true"
-         android:layout_below="@id/news_title_textview"
-         android:ellipsize="end"
-         android:maxLines="3"
-         android:text="Youm7TextView"
-         android:textColor="@android:color/black" />
+    <com.youm7.news.Youm7TextView
+        android:id="@+id/sec_news_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/news_title_textview"
+        android:layout_toRightOf="@+id/newsimageview"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/sec_date"
+        android:gravity="right"
+        android:textColor="#000000"
+        android:textSize="11sp" />
 
-    </RelativeLayout>
-
-    
+</RelativeLayout>

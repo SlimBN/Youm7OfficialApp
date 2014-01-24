@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_youm7officialapp" default="compile.module.youm7officialapp">
+  <dirname property="module.youm7officialapp.basedir" file="${ant.file.module_youm7officialapp}"/>
+  
+  <property name="module.jdk.home.youm7officialapp" value="${jdk.home.android_api_17_platform}"/>
+  <property name="module.jdk.bin.youm7officialapp" value="${jdk.bin.android_api_17_platform}"/>
+  <property name="module.jdk.classpath.youm7officialapp" value="jdk.classpath.android_api_17_platform"/>
+  
+  <property name="compiler.args.youm7officialapp" value="${compiler.args}"/>
+  
+  <property name="youm7officialapp.output.dir" value="${module.youm7officialapp.basedir}/out/production/Youm7OfficialApp"/>
+  <property name="youm7officialapp.testoutput.dir" value="${module.youm7officialapp.basedir}/out/test/Youm7OfficialApp"/>
+  
+  <path id="youm7officialapp.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="youm7officialapp.module.production.classpath">
+    <path refid="${module.jdk.classpath.youm7officialapp}"/>
+    <path refid="library.libs.classpath"/>
+    <pathelement location="${appcompat.output.dir}"/>
+    <pathelement location="${pulltorefreshviewpager.output.dir}"/>
+    <pathelement location="${library.output.dir}"/>
+    <pathelement location="${pulltorefresh.output.dir}"/>
+  </path>
+  
+  <path id="youm7officialapp.runtime.production.module.classpath">
+    <pathelement location="${youm7officialapp.output.dir}"/>
+    <path refid="library.libs.classpath"/>
+    <path refid="appcompat.runtime.production.module.classpath"/>
+    <path refid="pulltorefreshviewpager.runtime.production.module.classpath"/>
+    <path refid="library.runtime.production.module.classpath"/>
+    <path refid="pulltorefresh.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="youm7officialapp.module.classpath">
+    <path refid="${module.jdk.classpath.youm7officialapp}"/>
+    <pathelement location="${youm7officialapp.output.dir}"/>
+    <path refid="library.libs.classpath"/>
+    <pathelement location="${appcompat.testoutput.dir}"/>
+    <pathelement location="${appcompat.output.dir}"/>
+    <pathelement location="${pulltorefreshviewpager.testoutput.dir}"/>
+    <pathelement location="${pulltorefreshviewpager.output.dir}"/>
+    <pathelement location="${library.testoutput.dir}"/>
+    <pathelement location="${library.output.dir}"/>
+    <pathelement location="${pulltorefresh.testoutput.dir}"/>
+    <pathelement location="${pulltorefresh.output.dir}"/>
+  </path>
+  
+  <path id="youm7officialapp.runtime.module.classpath">
+    <pathelement location="${youm7officialapp.testoutput.dir}"/>
+    <pathelement location="${youm7officialapp.output.dir}"/>
+    <path refid="library.libs.classpath"/>
+    <path refid="appcompat.runtime.module.classpath"/>
+    <path refid="pulltorefreshviewpager.runtime.module.classpath"/>
+    <path refid="library.runtime.module.classpath"/>
+    <path refid="pulltorefresh.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.youm7officialapp">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.youm7officialapp">
+    <patternset refid="excluded.from.module.youm7officialapp"/>
+  </patternset>
+  
+  <path id="youm7officialapp.module.sourcepath">
+    <dirset dir="${module.youm7officialapp.basedir}">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.youm7officialapp" depends="compile.module.youm7officialapp.production,compile.module.youm7officialapp.tests" description="Compile module Youm7OfficialApp"/>
+  
+  <target name="compile.module.youm7officialapp.production" depends="register.custom.compilers,compile.module.appcompat,compile.module.pulltorefreshviewpager,compile.module.library,compile.module.pulltorefresh" description="Compile module Youm7OfficialApp; production classes">
+    <mkdir dir="${youm7officialapp.output.dir}"/>
+    <javac2 destdir="${youm7officialapp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.youm7officialapp}/javac">
+      <compilerarg line="${compiler.args.youm7officialapp}"/>
+      <bootclasspath refid="youm7officialapp.module.bootclasspath"/>
+      <classpath refid="youm7officialapp.module.production.classpath"/>
+      <src refid="youm7officialapp.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.youm7officialapp"/>
+    </javac2>
+    
+    <copy todir="${youm7officialapp.output.dir}">
+      <fileset dir="${module.youm7officialapp.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.youm7officialapp.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.youm7officialapp.tests" depends="register.custom.compilers,compile.module.youm7officialapp.production" description="compile module Youm7OfficialApp; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.youm7officialapp" description="cleanup module">
+    <delete dir="${youm7officialapp.output.dir}"/>
+    <delete dir="${youm7officialapp.testoutput.dir}"/>
+  </target>
+</project>

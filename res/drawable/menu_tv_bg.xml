@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-  <item android:state_pressed="true">
-      <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<!-- This is the line -->
-    <item android:top="-10dp" android:left="-10dp" android:bottom="-10dp">
-      <shape>
-            <solid android:color="#5D5D5D" />
-            <stroke android:width="10dp" android:color="@color/Youm7Red" />
-            
-      </shape>
-    </item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-</layer-list>
-  </item>  
-<item >
-    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<!-- This is the line -->
-    <item android:top="-10dp" android:left="-10dp" android:bottom="-10dp">
-      <shape>
-            <solid android:color="#5D5D5D" />
-            <stroke android:width="10dp" android:color="#9D9D9D" />
-      </shape>
-    </item>
+    <item android:state_pressed="true"><layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-</layer-list>
-</item>
+            <!-- This is the line -->
+            <item android:bottom="-10dp" android:left="-10dp" android:top="-10dp"><shape>
+                    <solid android:color="#5D5D5D" />
+
+                    <stroke android:width="10dp" android:color="@color/Youm7Red" />
+                </shape></item>
+        </layer-list></item>
+    <item><layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <!-- This is the line -->
+            <item android:bottom="-10dp" android:left="-10dp" android:top="-10dp"><shape>
+                    <solid android:color="#5D5D5D" />
+
+                    <stroke android:width="10dp" android:color="#9D9D9D" />
+                </shape></item>
+        </layer-list></item>
+
 </selector>

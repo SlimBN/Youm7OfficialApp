@@ -12,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="5dp"
+        android:background="@drawable/loadmore_bg"
         android:gravity="center_vertical|center_horizontal"
         android:text="اضغط لتحميل المزيد من الاخبار"
         android:textColor="@color/Youm7Red" />
@@ -24,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:visibility="invisible" />
 
-    <com.youm7.newsapp.Youm7TextView
+    <com.youm7.news.Youm7TextView
         android:id="@+id/Youm7TextView1"
         android:layout_width="match_parent"
         android:layout_height="20dp"

@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <integer-array name="sectionIDs">
-        <item >65</item>
-        <item >319</item>
-        <item >97</item>
-        <item >203</item>
-        <item >296</item>
-        <item >88</item>
-        <item >24</item>
-        <item >297</item>
-        <item >286</item>
-        <item >298</item>
-        <item >48</item>
-        <item >94</item>
-        <item >89</item>
-        <item >245</item>
-        <item >190</item>
-        <item >291</item>
-        <item >87</item>
-        <item >96</item>
-        <item >99</item>
-        
+        <item>65</item>
+        <item>12</item>
+        <item>319</item>
+        <item>97</item>
+        <item>203</item>
+        <item>296</item>
+        <item>88</item>
+        <item>24</item>
+        <item>297</item>
+        <item>286</item>
+        <item>298</item>
+        <item>48</item>
+        <item>94</item>
+        <item>89</item>
+        <item>245</item>
+        <item>190</item>
+        <item>291</item>
+        <item>87</item>
+        <item>96</item>
+        <item>99</item>
+        <item>228</item>
+        <item>299</item>
+        <item>192</item>
+        <item>251</item>
     </integer-array>
+
 </resources>

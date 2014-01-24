@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sms_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_sms_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="2dp"
+        android:background="@color/Dark_Grey"
+        android:gravity="right|center_vertical"
+        android:minHeight="80dp"
+        android:padding="5dp"
+        android:text="هل تريد الاشتراك فى خدمة الرسائل القصيرة للاخبار العاجلة من اليوم السابع؟"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/btn_sms_decline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_sms_confirm"
+        android:layout_toLeftOf="@+id/mediator"
+        android:text="الغاء" />
+
+    <TextView
+        android:id="@+id/mediator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/tv_sms_confirm"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_sms_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mediator"
+        android:layout_below="@+id/tv_sms_confirm"
+        android:text="اشترك" />
+
+</RelativeLayout>

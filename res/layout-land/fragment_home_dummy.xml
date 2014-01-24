@@ -1,22 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-    xmlns:custom="http://schemas.android.com/apk/res/com.youm7.newsapp"
+    xmlns:custom="http://schemas.android.com/apk/res/com.youm7.news"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/redbars_bg" >
 
-    <com.google.ads.doubleclick.DfpAdView
+    <com.google.ads.AdView
         android:id="@+id/adView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="/15942961/New-Meduim350Home-Khattab"
-        ads:loadAdOnCreate="true"
-       
-        />
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-8742165972829133/6545166807" />
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:id="@+id/HomePagelayout"
@@ -35,10 +32,10 @@
             android:paddingRight="10dp"
             android:paddingTop="0dp" >
 
-            <com.youm7.newsapp.PullToRefreshViewPager
+            <com.youm7.news.PullToRefreshViewPager
                 android:id="@+id/TopStoryPager"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -53,21 +50,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp" />
 
-            <com.youm7.newsapp.PagerContainer
+            <com.youm7.news.PagerContainer
                 android:id="@+id/mogaz_container"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_marginBottom="2dp"
                 android:background="@color/Dark_Grey" >
 
-                <com.youm7.newsapp.SmartViewPager
+                <com.youm7.news.SmartViewPager
                     android:id="@+id/mogaz_pager"
                     android:layout_width="170dp"
                     android:layout_height="130dp"
                     android:layout_gravity="center_horizontal|center_vertical" />
-            </com.youm7.newsapp.PagerContainer>
+            </com.youm7.news.PagerContainer>
 
-            <com.youm7.newsapp.Youm7TextView
+            <com.youm7.news.Youm7TextView
                 android:id="@+id/mogazTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +88,8 @@
                 android:baselineAligned="true"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:paddingTop="10dp" >
 
                 <LinearLayout
@@ -120,6 +119,6 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@drawable/loadingscreen" />
+        android:src="@drawable/loadingscreenw" />
 
 </RelativeLayout>

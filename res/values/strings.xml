@@ -3,11 +3,10 @@
 
     <string name="app_name">"اليوم السابع"</string>
     <string name="action_settings">Settings</string>
-   
-    
+
     <string-array name="section_names">
-       
         <item name="urgent">اخبار عاجلة</item>
+        <item name="tahkekat">تحقيقات و ملفات</item>
         <item name="syasa">سياسة</item>
         <item name="takarir">تقارير مصرية</item>
         <item name="hawadeth">حوادث</item>
@@ -27,30 +26,33 @@
         <item name="var">منوعات
 					ومجتمع </item>
         <item name="health">صحة
-					وطب</item> 
+					وطب</item>
         <item name="essay">مقالات
 					القراء</item>
         <item name="photos">ألبومات
 					اليوم السابع</item>
-					 <item name="urgent">مقالات
-					 </item>
+        <item name="urgent">مقالات</item>
         <item name="local">صحافة
 					محلية</item>
         <item name="wornews">صحف
 					عالمية</item>
+        <item name="israeli">صحافة إسرائيلية</item>
+        <item name="chiefed">بقلم رئيس التحرير</item>
+        <item name="carec">كاريكاتير اليوم</item>
+        <item name="talkshow">توك شو</item>
     </string-array>
     <string-array name="home_sectionID">
-        <item >65</item>
-        <item >319</item>
-        <item >97</item>
-        <item >203</item>
-        <item >296</item>
-        <item >88</item>
-        <item >24</item>
-        <item >297</item>
-</string-array>
-<string-array name="home_sectionNames">
-    <item name="urgent">أخبار عاجلة</item>
+        <item>65</item>
+        <item>319</item>
+        <item>97</item>
+        <item>203</item>
+        <item>296</item>
+        <item>88</item>
+        <item>24</item>
+        <item>297</item>
+    </string-array>
+    <string-array name="home_sectionNames">
+        <item name="urgent">أخبار عاجلة</item>
         <item name="syasa">سياسة</item>
         <item name="takarir">تقارير مصرية</item>
         <item name="hawadeth">حوادث</item>
@@ -60,13 +62,15 @@
         <item name="econ">اقتصاد</item>
         <item name="stocks">بورصة
 					وبنوك</item>
-					 <item name="worldnews">أخبار عالمية</item>
+        <item name="worldnews">أخبار عالمية</item>
         <item name="sports">أخبار الرياضة</item>
-</string-array>
+    </string-array>
+
     <string name="drawer_open">opened</string>
     <string name="drawer_close">closed</string>
     <string name="footer_text">حقوق النشر محفوظة اليوم السابع  \u00A9</string>
     <string name="Refreshing_label">جارى تحميل الاخبار</string>
     <string name="pull_label">اسحب لاسفل للتحميل</string>
-     <string name="release_label">اترك للتحميل</string>
+    <string name="release_label">اترك للتحميل</string>
+
 </resources>

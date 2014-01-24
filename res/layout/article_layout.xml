@@ -7,24 +7,22 @@
     android:focusable="true"
     android:focusableInTouchMode="true" >
 
-     <com.google.ads.doubleclick.DfpAdView
+    <com.google.ads.AdView
         android:id="@+id/adView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="/15942961/New-Meduim350Home-Khattab"
-        ads:loadAdOnCreate="true"
-       />
+        ads:adUnitId="ca-app-pub-8742165972829133/6545166807" />
 
     <ScrollView
         android:id="@+id/ScrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
         android:background="@drawable/redbars_bg"
         android:fillViewport="true"
-        android:scrollbars="none" 
-        android:layout_above="@+id/adView">
+        android:scrollbars="none" >
 
         <RelativeLayout
             android:id="@+id/Article_holder"
@@ -33,19 +31,21 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp" >
 
-            <com.youm7.newsapp.Youm7TextView
+            <com.youm7.news.Youm7TextView
                 android:id="@+id/youmTextView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:background="@color/White"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:gravity="right|center_vertical"
                 android:padding="3dp"
                 android:textColor="@color/Youm7Red"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <com.youm7.newsapp.Youm7TextView
+            <com.youm7.news.Youm7TextView
                 android:id="@+id/youm7TextView3"
                 android:layout_width="fill_parent"
                 android:layout_height="15dp"
@@ -57,7 +57,7 @@
                 android:paddingRight="3dp"
                 android:textSize="11sp" />
 
-            <ImageView
+            <com.youm7.news.ResizableImageViewLarge
                 android:id="@+id/logoimg"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
@@ -65,7 +65,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:adjustViewBounds="true"
                 android:background="#cccccc"
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
@@ -74,7 +73,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/loader_top" />
 
-            <com.youm7.newsapp.Youm7TextView
+            <com.youm7.news.Youm7TextView
                 android:id="@+id/newswriter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,13 +89,13 @@
                 android:id="@+id/articlepb"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/newswriter"
                 android:background="@color/White"
                 android:indeterminate="true"
                 android:visibility="visible" />
 
-            <com.youm7.newsapp.Youm7TextView
+            <com.youm7.news.Youm7TextView
                 android:id="@+id/youmTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,7 +206,7 @@
 
                 <Button
                     android:id="@+id/addcommentbutton"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:background="@android:drawable/btn_default"
                     android:text="اضف تعليق" />

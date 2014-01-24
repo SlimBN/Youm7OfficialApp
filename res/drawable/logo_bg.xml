@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true">
-     <color android:color="#F0F0F0"/>
-</item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-<item >
-    <color android:color="@android:color/transparent"/>
+    <item android:state_pressed="true"><layer-list>
+            <item android:left="-2dp" android:right="-2dp"><shape>
+                    <stroke android:width="2dp" android:color="@color/Youm7Red" />
+
+                    <solid android:color="@color/White" />
+                </shape></item>
+        </layer-list></item>
+    <item><color android:color="@android:color/transparent" />
     </item>
+
 </selector>

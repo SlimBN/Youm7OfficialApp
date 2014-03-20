@@ -1,6 +1,6 @@
 package com.youm7.news;
 
-import java.lang.Character.UnicodeBlock;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,7 +21,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;

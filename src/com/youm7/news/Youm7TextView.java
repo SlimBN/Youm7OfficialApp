@@ -1,7 +1,6 @@
 package com.youm7.news;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 

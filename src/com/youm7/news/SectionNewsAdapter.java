@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.youm7.news.NewsLoader.TaskCompletedListener;
 
 

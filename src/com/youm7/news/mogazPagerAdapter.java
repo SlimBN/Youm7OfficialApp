@@ -1,6 +1,6 @@
 package com.youm7.news;
 
-import java.lang.Character.UnicodeBlock;
+
 import java.util.ArrayList;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -18,10 +18,9 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
+
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 
 public class mogazPagerAdapter extends PagerAdapter implements TaskCompletedListener,OnClickListener,OnTouchListener,OnLongClickListener {
 int mViewCount;

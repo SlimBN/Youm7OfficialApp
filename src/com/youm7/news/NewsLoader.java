@@ -3,7 +3,6 @@ package com.youm7.news;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -14,10 +13,10 @@ import org.xmlpull.v1.XmlPullParserException;
 
 
 
-import android.content.Context;
+
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v4.app.Fragment;
+
 import android.util.Log;
 
 public  class NewsLoader   {

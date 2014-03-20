@@ -2,9 +2,8 @@ package com.youm7.news;
 
 import android.widget.ImageView;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
+
 
 
 public class ResizableImageView extends ImageView {

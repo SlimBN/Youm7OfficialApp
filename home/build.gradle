@@ -1,0 +1,27 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.0.3'
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':librarypulltorefresh')
+    compile project(':pullToRefreshViewPager')
+    compile project(':library')
+    compile 'com.android.support:appcompat-v7:+'
+    compile files('libs/universal-image-loader-1.8.5-with-sources.jar')
+    compile files('libs/GoogleAdMobAdsSdk-6.4.1.jar')
+}

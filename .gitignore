@@ -245,3 +245,6 @@ Thumbs.db
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
+.idea/copyright/profiles_settings.xml
+
+.idea/workspace.xml
